@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Pep Guardiola",
+    "style": "Positional play",
+    "image": "assets/managers/manager-001.webp"
+  },
+  {
+    "id": 2,
+    "name": "Carlo Ancelotti",
+    "style": "Flexible stars",
+    "image": "assets/managers/manager-002.webp"
+  },
+  {
+    "id": 3,
+    "name": "Jose Mourinho",
+    "style": "Compact counter",
+    "image": "assets/managers/manager-003.webp"
+  },
+  {
+    "id": 4,
+    "name": "Johan Cruyff",
+    "style": "Total football",
+    "image": "assets/managers/manager-004.webp"
+  },
+  {
+    "id": 5,
+    "name": "Zinedine Zidane",
+    "style": "Big-game calm",
+    "image": "assets/managers/manager-005.webp"
+  },
+  {
+    "id": 6,
+    "name": "Vicente del Bosque",
+    "style": "Control block",
+    "image": "assets/managers/manager-006.webp"
+  },
+  {
+    "id": 7,
+    "name": "Jurgen Klopp",
+    "style": "Heavy press",
+    "image": "assets/managers/manager-007.webp"
+  },
+  {
+    "id": 8,
+    "name": "Arsene Wenger",
+    "style": "Creative flow",
+    "image": "assets/managers/manager-008.webp"
+  },
+  {
+    "id": 9,
+    "name": "Arrigo Sacchi",
+    "style": "Milan press",
+    "image": "assets/managers/manager-009.webp"
+  },
+  {
+    "id": 10,
+    "name": "Luiz Felipe Scolari",
+    "style": "Tournament Brazil",
+    "image": "assets/managers/manager-010.webp"
+  },
+  {
+    "id": 11,
+    "name": "Didier Deschamps",
+    "style": "Tournament pragmatism",
+    "image": "assets/managers/manager-011.webp"
+  },
+  {
+    "id": 12,
+    "name": "Alex Ferguson",
+    "style": "Relentless width",
+    "image": "assets/managers/manager-012.webp"
+  }
+]

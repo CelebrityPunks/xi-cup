@@ -1,0 +1,12 @@
+001 Pep Guardiola
+002 Carlo Ancelotti
+003 Jose Mourinho
+004 Johan Cruyff
+005 Zinedine Zidane
+006 Vicente del Bosque
+007 Jurgen Klopp
+008 Arsene Wenger
+009 Arrigo Sacchi
+010 Luiz Felipe Scolari
+011 Didier Deschamps
+012 Alex Ferguson

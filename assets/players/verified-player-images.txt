@@ -1,0 +1,85 @@
+001 Lionel Messi
+002 Cristiano Ronaldo
+003 Ronaldo Nazario
+004 Zinedine Zidane
+005 Pele
+006 Diego Maradona
+007 Neymar
+008 Luis Suarez
+009 Xavi
+010 Andres Iniesta
+011 Sergio Busquets
+012 Dani Alves
+013 Carles Puyol
+014 Gerard Pique
+015 David Villa
+016 Iker Casillas
+017 Sergio Ramos
+018 Luka Modric
+019 Toni Kroos
+020 Karim Benzema
+021 Gareth Bale
+022 Marcelo
+023 Casemiro
+024 Roberto Carlos
+025 Cafu
+026 Ronaldinho
+027 Rivaldo
+028 Kaka
+029 Dida
+030 Paolo Maldini
+031 Alessandro Nesta
+032 Andrea Pirlo
+033 Clarence Seedorf
+034 Andriy Shevchenko
+035 Gianluigi Buffon
+036 Fabio Cannavaro
+037 Thierry Henry
+038 Dennis Bergkamp
+039 Patrick Vieira
+040 Robert Pires
+041 Sol Campbell
+042 Ashley Cole
+043 Peter Schmeichel
+044 Wayne Rooney
+045 Rio Ferdinand
+046 Nemanja Vidic
+047 Paul Scholes
+048 Ryan Giggs
+049 Edwin van der Sar
+050 Xabi Alonso
+051 Manuel Neuer
+052 Philipp Lahm
+053 Bastian Schweinsteiger
+054 Thomas Muller
+055 Miroslav Klose
+056 Mesut Ozil
+057 Kevin De Bruyne
+058 Erling Haaland
+059 Rodri
+060 Bernardo Silva
+061 Ruben Dias
+062 Ederson
+063 Johan Cruyff
+064 Ruud Gullit
+065 Marco van Basten
+066 Frank Rijkaard
+067 Virgil van Dijk
+068 Mohamed Salah
+069 Sadio Mane
+070 Roberto Firmino
+071 Alisson
+072 Steven Gerrard
+073 Frank Lampard
+074 Didier Drogba
+075 John Terry
+076 Petr Cech
+077 Kylian Mbappe
+078 Antoine Griezmann
+079 N'Golo Kante
+080 Raphael Varane
+159 Ousmane Dembele
+160 Lamine Yamal
+161 Vitinha
+162 Raphinha
+163 Achraf Hakimi

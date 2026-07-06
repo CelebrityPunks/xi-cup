@@ -1,0 +1,512 @@
+[
+  {
+    "id": 1,
+    "name": "Lionel Messi",
+    "asset": "assets/players/player-001.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 2,
+    "name": "Cristiano Ronaldo",
+    "asset": "assets/players/player-002.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 3,
+    "name": "Ronaldo Nazario",
+    "asset": "assets/players/player-003.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 4,
+    "name": "Zinedine Zidane",
+    "asset": "assets/players/player-004.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 5,
+    "name": "Pele",
+    "asset": "assets/players/player-005.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 6,
+    "name": "Diego Maradona",
+    "asset": "assets/players/player-006.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 7,
+    "name": "Neymar",
+    "asset": "assets/players/player-007.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 8,
+    "name": "Luis Suarez",
+    "asset": "assets/players/player-008.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 9,
+    "name": "Xavi",
+    "asset": "assets/players/player-009.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 10,
+    "name": "Andres Iniesta",
+    "asset": "assets/players/player-010.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 11,
+    "name": "Sergio Busquets",
+    "asset": "assets/players/player-011.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 12,
+    "name": "Dani Alves",
+    "asset": "assets/players/player-012.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 13,
+    "name": "Carles Puyol",
+    "asset": "assets/players/player-013.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 14,
+    "name": "Gerard Pique",
+    "asset": "assets/players/player-014.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 15,
+    "name": "David Villa",
+    "asset": "assets/players/player-015.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 16,
+    "name": "Iker Casillas",
+    "asset": "assets/players/player-016.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 17,
+    "name": "Sergio Ramos",
+    "asset": "assets/players/player-017.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 18,
+    "name": "Luka Modric",
+    "asset": "assets/players/player-018.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 19,
+    "name": "Toni Kroos",
+    "asset": "assets/players/player-019.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 20,
+    "name": "Karim Benzema",
+    "asset": "assets/players/player-020.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 21,
+    "name": "Gareth Bale",
+    "asset": "assets/players/player-021.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 22,
+    "name": "Marcelo",
+    "asset": "assets/players/player-022.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 23,
+    "name": "Casemiro",
+    "asset": "assets/players/player-023.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 24,
+    "name": "Roberto Carlos",
+    "asset": "assets/players/player-024.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 25,
+    "name": "Cafu",
+    "asset": "assets/players/player-025.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 26,
+    "name": "Ronaldinho",
+    "asset": "assets/players/player-026.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 27,
+    "name": "Rivaldo",
+    "asset": "assets/players/player-027.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 28,
+    "name": "Kaka",
+    "asset": "assets/players/player-028.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 29,
+    "name": "Dida",
+    "asset": "assets/players/player-029.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 30,
+    "name": "Paolo Maldini",
+    "asset": "assets/players/player-030.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 31,
+    "name": "Alessandro Nesta",
+    "asset": "assets/players/player-031.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 32,
+    "name": "Andrea Pirlo",
+    "asset": "assets/players/player-032.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 33,
+    "name": "Clarence Seedorf",
+    "asset": "assets/players/player-033.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 34,
+    "name": "Andriy Shevchenko",
+    "asset": "assets/players/player-034.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 35,
+    "name": "Gianluigi Buffon",
+    "asset": "assets/players/player-035.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 36,
+    "name": "Fabio Cannavaro",
+    "asset": "assets/players/player-036.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 37,
+    "name": "Thierry Henry",
+    "asset": "assets/players/player-037.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 38,
+    "name": "Dennis Bergkamp",
+    "asset": "assets/players/player-038.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 39,
+    "name": "Patrick Vieira",
+    "asset": "assets/players/player-039.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 40,
+    "name": "Robert Pires",
+    "asset": "assets/players/player-040.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 41,
+    "name": "Sol Campbell",
+    "asset": "assets/players/player-041.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 42,
+    "name": "Ashley Cole",
+    "asset": "assets/players/player-042.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 43,
+    "name": "Peter Schmeichel",
+    "asset": "assets/players/player-043.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 44,
+    "name": "Wayne Rooney",
+    "asset": "assets/players/player-044.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 45,
+    "name": "Rio Ferdinand",
+    "asset": "assets/players/player-045.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 46,
+    "name": "Nemanja Vidic",
+    "asset": "assets/players/player-046.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 47,
+    "name": "Paul Scholes",
+    "asset": "assets/players/player-047.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 48,
+    "name": "Ryan Giggs",
+    "asset": "assets/players/player-048.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 49,
+    "name": "Edwin van der Sar",
+    "asset": "assets/players/player-049.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 50,
+    "name": "Xabi Alonso",
+    "asset": "assets/players/player-050.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 51,
+    "name": "Manuel Neuer",
+    "asset": "assets/players/player-051.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 52,
+    "name": "Philipp Lahm",
+    "asset": "assets/players/player-052.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 53,
+    "name": "Bastian Schweinsteiger",
+    "asset": "assets/players/player-053.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 54,
+    "name": "Thomas Muller",
+    "asset": "assets/players/player-054.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 55,
+    "name": "Miroslav Klose",
+    "asset": "assets/players/player-055.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 56,
+    "name": "Mesut Ozil",
+    "asset": "assets/players/player-056.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 57,
+    "name": "Kevin De Bruyne",
+    "asset": "assets/players/player-057.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 58,
+    "name": "Erling Haaland",
+    "asset": "assets/players/player-058.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 59,
+    "name": "Rodri",
+    "asset": "assets/players/player-059.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 60,
+    "name": "Bernardo Silva",
+    "asset": "assets/players/player-060.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 61,
+    "name": "Ruben Dias",
+    "asset": "assets/players/player-061.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 62,
+    "name": "Ederson",
+    "asset": "assets/players/player-062.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 63,
+    "name": "Johan Cruyff",
+    "asset": "assets/players/player-063.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 64,
+    "name": "Ruud Gullit",
+    "asset": "assets/players/player-064.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 65,
+    "name": "Marco van Basten",
+    "asset": "assets/players/player-065.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 66,
+    "name": "Frank Rijkaard",
+    "asset": "assets/players/player-066.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 67,
+    "name": "Virgil van Dijk",
+    "asset": "assets/players/player-067.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 68,
+    "name": "Mohamed Salah",
+    "asset": "assets/players/player-068.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 69,
+    "name": "Sadio Mane",
+    "asset": "assets/players/player-069.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 70,
+    "name": "Roberto Firmino",
+    "asset": "assets/players/player-070.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 71,
+    "name": "Alisson",
+    "asset": "assets/players/player-071.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 72,
+    "name": "Steven Gerrard",
+    "asset": "assets/players/player-072.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 73,
+    "name": "Frank Lampard",
+    "asset": "assets/players/player-073.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 74,
+    "name": "Didier Drogba",
+    "asset": "assets/players/player-074.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 75,
+    "name": "John Terry",
+    "asset": "assets/players/player-075.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 76,
+    "name": "Petr Cech",
+    "asset": "assets/players/player-076.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 77,
+    "name": "Kylian Mbappe",
+    "asset": "assets/players/player-077.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 78,
+    "name": "Antoine Griezmann",
+    "asset": "assets/players/player-078.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 79,
+    "name": "N'Golo Kante",
+    "asset": "assets/players/player-079.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 80,
+    "name": "Raphael Varane",
+    "asset": "assets/players/player-080.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 159,
+    "name": "Ousmane Dembele",
+    "asset": "assets/players/player-159.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 160,
+    "name": "Lamine Yamal",
+    "asset": "assets/players/player-160.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 161,
+    "name": "Vitinha",
+    "asset": "assets/players/player-161.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 162,
+    "name": "Raphinha",
+    "asset": "assets/players/player-162.png",
+    "status": "verified-likeness-pass"
+  },
+  {
+    "id": 163,
+    "name": "Achraf Hakimi",
+    "asset": "assets/players/player-163.png",
+    "status": "verified-likeness-pass"
+  }
+]

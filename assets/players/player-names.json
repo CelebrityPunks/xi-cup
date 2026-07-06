@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 1,
+    "name": "Lionel Messi",
+    "peakRating": 100,
+    "primary": "RW",
+    "image": "assets/players/player-001.webp"
+  },
+  {
+    "id": 2,
+    "name": "Cristiano Ronaldo",
+    "peakRating": 99,
+    "primary": "LW",
+    "image": "assets/players/player-002.webp"
+  },
+  {
+    "id": 3,
+    "name": "Ronaldo Nazario",
+    "peakRating": 97,
+    "primary": "ST",
+    "image": "assets/players/player-003.webp"
+  },
+  {
+    "id": 4,
+    "name": "Zinedine Zidane",
+    "peakRating": 97,
+    "primary": "CAM",
+    "image": "assets/players/player-004.webp"
+  },
+  {
+    "id": 5,
+    "name": "Pele",
+    "peakRating": 98,
+    "primary": "CF",
+    "image": "assets/players/player-005.webp"
+  },
+  {
+    "id": 6,
+    "name": "Diego Maradona",
+    "peakRating": 98,
+    "primary": "CAM",
+    "image": "assets/players/player-006.webp"
+  },
+  {
+    "id": 7,
+    "name": "Neymar",
+    "peakRating": 95,
+    "primary": "LW",
+    "image": "assets/players/player-007.webp"
+  },
+  {
+    "id": 8,
+    "name": "Luis Suarez",
+    "peakRating": 95,
+    "primary": "ST",
+    "image": "assets/players/player-008.webp"
+  },
+  {
+    "id": 9,
+    "name": "Xavi",
+    "peakRating": 96,
+    "primary": "CM",
+    "image": "assets/players/player-009.webp"
+  },
+  {
+    "id": 10,
+    "name": "Andres Iniesta",
+    "peakRating": 96,
+    "primary": "CM",
+    "image": "assets/players/player-010.webp"
+  },
+  {
+    "id": 11,
+    "name": "Sergio Busquets",
+    "peakRating": 93,
+    "primary": "CDM",
+    "image": "assets/players/player-011.webp"
+  },
+  {
+    "id": 12,
+    "name": "Dani Alves",
+    "peakRating": 94,
+    "primary": "RB",
+    "image": "assets/players/player-012.webp"
+  },
+  {
+    "id": 13,
+    "name": "Carles Puyol",
+    "peakRating": 94,
+    "primary": "CB",
+    "image": "assets/players/player-013.webp"
+  },
+  {
+    "id": 14,
+    "name": "Gerard Pique",
+    "peakRating": 92,
+    "primary": "CB",
+    "image": "assets/players/player-014.webp"
+  },
+  {
+    "id": 15,
+    "name": "David Villa",
+    "peakRating": 93,
+    "primary": "ST",
+    "image": "assets/players/player-015.webp"
+  },
+  {
+    "id": 16,
+    "name": "Iker Casillas",
+    "peakRating": 95,
+    "primary": "GK",
+    "image": "assets/players/player-016.webp"
+  },
+  {
+    "id": 17,
+    "name": "Sergio Ramos",
+    "peakRating": 94,
+    "primary": "CB",
+    "image": "assets/players/player-017.webp"
+  },
+  {
+    "id": 18,
+    "name": "Luka Modric",
+    "peakRating": 95,
+    "primary": "CM",
+    "image": "assets/players/player-018.webp"
+  },
+  {
+    "id": 19,
+    "name": "Toni Kroos",
+    "peakRating": 93,
+    "primary": "CM",
+    "image": "assets/players/player-019.webp"
+  },
+  {
+    "id": 20,
+    "name": "Karim Benzema",
+    "peakRating": 94,
+    "primary": "ST",
+    "image": "assets/players/player-020.webp"
+  },
+  {
+    "id": 21,
+    "name": "Gareth Bale",
+    "peakRating": 92,
+    "primary": "RW",
+    "image": "assets/players/player-021.webp"
+  },
+  {
+    "id": 22,
+    "name": "Marcelo",
+    "peakRating": 92,
+    "primary": "LB",
+    "image": "assets/players/player-022.webp"
+  },
+  {
+    "id": 23,
+    "name": "Casemiro",
+    "peakRating": 91,
+    "primary": "CDM",
+    "image": "assets/players/player-023.webp"
+  },
+  {
+    "id": 24,
+    "name": "Roberto Carlos",
+    "peakRating": 95,
+    "primary": "LB",
+    "image": "assets/players/player-024.webp"
+  },
+  {
+    "id": 25,
+    "name": "Cafu",
+    "peakRating": 94,
+    "primary": "RB",
+    "image": "assets/players/player-025.webp"
+  },
+  {
+    "id": 26,
+    "name": "Ronaldinho",
+    "peakRating": 96,
+    "primary": "LW",
+    "image": "assets/players/player-026.webp"
+  },
+  {
+    "id": 27,
+    "name": "Rivaldo",
+    "peakRating": 94,
+    "primary": "CAM",
+    "image": "assets/players/player-027.webp"
+  },
+  {
+    "id": 28,
+    "name": "Kaka",
+    "peakRating": 95,
+    "primary": "CAM",
+    "image": "assets/players/player-028.webp"
+  },
+  {
+    "id": 29,
+    "name": "Dida",
+    "peakRating": 91,
+    "primary": "GK",
+    "image": "assets/players/player-029.webp"
+  },
+  {
+    "id": 30,
+    "name": "Paolo Maldini",
+    "peakRating": 96,
+    "primary": "CB",
+    "image": "assets/players/player-030.webp"
+  },
+  {
+    "id": 31,
+    "name": "Alessandro Nesta",
+    "peakRating": 94,
+    "primary": "CB",
+    "image": "assets/players/player-031.webp"
+  },
+  {
+    "id": 32,
+    "name": "Andrea Pirlo",
+    "peakRating": 94,
+    "primary": "CM",
+    "image": "assets/players/player-032.webp"
+  },
+  {
+    "id": 33,
+    "name": "Clarence Seedorf",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-033.webp"
+  },
+  {
+    "id": 34,
+    "name": "Andriy Shevchenko",
+    "peakRating": 93,
+    "primary": "ST",
+    "image": "assets/players/player-034.webp"
+  },
+  {
+    "id": 35,
+    "name": "Gianluigi Buffon",
+    "peakRating": 95,
+    "primary": "GK",
+    "image": "assets/players/player-035.webp"
+  },
+  {
+    "id": 36,
+    "name": "Fabio Cannavaro",
+    "peakRating": 93,
+    "primary": "CB",
+    "image": "assets/players/player-036.webp"
+  },
+  {
+    "id": 37,
+    "name": "Thierry Henry",
+    "peakRating": 96,
+    "primary": "ST",
+    "image": "assets/players/player-037.webp"
+  },
+  {
+    "id": 38,
+    "name": "Dennis Bergkamp",
+    "peakRating": 93,
+    "primary": "CF",
+    "image": "assets/players/player-038.webp"
+  },
+  {
+    "id": 39,
+    "name": "Patrick Vieira",
+    "peakRating": 93,
+    "primary": "CM",
+    "image": "assets/players/player-039.webp"
+  },
+  {
+    "id": 40,
+    "name": "Robert Pires",
+    "peakRating": 91,
+    "primary": "LM",
+    "image": "assets/players/player-040.webp"
+  },
+  {
+    "id": 41,
+    "name": "Sol Campbell",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-041.webp"
+  },
+  {
+    "id": 42,
+    "name": "Ashley Cole",
+    "peakRating": 91,
+    "primary": "LB",
+    "image": "assets/players/player-042.webp"
+  },
+  {
+    "id": 43,
+    "name": "Peter Schmeichel",
+    "peakRating": 94,
+    "primary": "GK",
+    "image": "assets/players/player-043.webp"
+  },
+  {
+    "id": 44,
+    "name": "Wayne Rooney",
+    "peakRating": 92,
+    "primary": "CF",
+    "image": "assets/players/player-044.webp"
+  },
+  {
+    "id": 45,
+    "name": "Rio Ferdinand",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-045.webp"
+  },
+  {
+    "id": 46,
+    "name": "Nemanja Vidic",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-046.webp"
+  },
+  {
+    "id": 47,
+    "name": "Paul Scholes",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-047.webp"
+  },
+  {
+    "id": 48,
+    "name": "Ryan Giggs",
+    "peakRating": 91,
+    "primary": "LM",
+    "image": "assets/players/player-048.webp"
+  },
+  {
+    "id": 49,
+    "name": "Edwin van der Sar",
+    "peakRating": 91,
+    "primary": "GK",
+    "image": "assets/players/player-049.webp"
+  },
+  {
+    "id": 50,
+    "name": "Xabi Alonso",
+    "peakRating": 92,
+    "primary": "CDM",
+    "image": "assets/players/player-050.webp"
+  },
+  {
+    "id": 51,
+    "name": "Manuel Neuer",
+    "peakRating": 94,
+    "primary": "GK",
+    "image": "assets/players/player-051.webp"
+  },
+  {
+    "id": 52,
+    "name": "Philipp Lahm",
+    "peakRating": 93,
+    "primary": "RB",
+    "image": "assets/players/player-052.webp"
+  },
+  {
+    "id": 53,
+    "name": "Bastian Schweinsteiger",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-053.webp"
+  },
+  {
+    "id": 54,
+    "name": "Thomas Muller",
+    "peakRating": 91,
+    "primary": "CF",
+    "image": "assets/players/player-054.webp"
+  },
+  {
+    "id": 55,
+    "name": "Miroslav Klose",
+    "peakRating": 90,
+    "primary": "ST",
+    "image": "assets/players/player-055.webp"
+  },
+  {
+    "id": 56,
+    "name": "Mesut Ozil",
+    "peakRating": 91,
+    "primary": "CAM",
+    "image": "assets/players/player-056.webp"
+  },
+  {
+    "id": 57,
+    "name": "Kevin De Bruyne",
+    "peakRating": 94,
+    "primary": "CM",
+    "image": "assets/players/player-057.webp"
+  },
+  {
+    "id": 58,
+    "name": "Erling Haaland",
+    "peakRating": 94,
+    "primary": "ST",
+    "image": "assets/players/player-058.webp"
+  },
+  {
+    "id": 59,
+    "name": "Rodri",
+    "peakRating": 93,
+    "primary": "CDM",
+    "image": "assets/players/player-059.webp"
+  },
+  {
+    "id": 60,
+    "name": "Bernardo Silva",
+    "peakRating": 91,
+    "primary": "RM",
+    "image": "assets/players/player-060.webp"
+  },
+  {
+    "id": 61,
+    "name": "Ruben Dias",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-061.webp"
+  },
+  {
+    "id": 62,
+    "name": "Ederson",
+    "peakRating": 90,
+    "primary": "GK",
+    "image": "assets/players/player-062.webp"
+  },
+  {
+    "id": 63,
+    "name": "Johan Cruyff",
+    "peakRating": 97,
+    "primary": "CF",
+    "image": "assets/players/player-063.webp"
+  },
+  {
+    "id": 64,
+    "name": "Ruud Gullit",
+    "peakRating": 94,
+    "primary": "CAM",
+    "image": "assets/players/player-064.webp"
+  },
+  {
+    "id": 65,
+    "name": "Marco van Basten",
+    "peakRating": 95,
+    "primary": "ST",
+    "image": "assets/players/player-065.webp"
+  },
+  {
+    "id": 66,
+    "name": "Frank Rijkaard",
+    "peakRating": 93,
+    "primary": "CDM",
+    "image": "assets/players/player-066.webp"
+  },
+  {
+    "id": 67,
+    "name": "Virgil van Dijk",
+    "peakRating": 92,
+    "primary": "CB",
+    "image": "assets/players/player-067.webp"
+  },
+  {
+    "id": 68,
+    "name": "Mohamed Salah",
+    "peakRating": 93,
+    "primary": "RW",
+    "image": "assets/players/player-068.webp"
+  },
+  {
+    "id": 69,
+    "name": "Sadio Mane",
+    "peakRating": 92,
+    "primary": "LW",
+    "image": "assets/players/player-069.webp"
+  },
+  {
+    "id": 70,
+    "name": "Roberto Firmino",
+    "peakRating": 90,
+    "primary": "CF",
+    "image": "assets/players/player-070.webp"
+  },
+  {
+    "id": 71,
+    "name": "Alisson",
+    "peakRating": 91,
+    "primary": "GK",
+    "image": "assets/players/player-071.webp"
+  },
+  {
+    "id": 72,
+    "name": "Steven Gerrard",
+    "peakRating": 93,
+    "primary": "CM",
+    "image": "assets/players/player-072.webp"
+  },
+  {
+    "id": 73,
+    "name": "Frank Lampard",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-073.webp"
+  },
+  {
+    "id": 74,
+    "name": "Didier Drogba",
+    "peakRating": 91,
+    "primary": "ST",
+    "image": "assets/players/player-074.webp"
+  },
+  {
+    "id": 75,
+    "name": "John Terry",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-075.webp"
+  },
+  {
+    "id": 76,
+    "name": "Petr Cech",
+    "peakRating": 92,
+    "primary": "GK",
+    "image": "assets/players/player-076.webp"
+  },
+  {
+    "id": 77,
+    "name": "Kylian Mbappe",
+    "peakRating": 95,
+    "primary": "ST",
+    "image": "assets/players/player-077.webp"
+  },
+  {
+    "id": 78,
+    "name": "Antoine Griezmann",
+    "peakRating": 91,
+    "primary": "CF",
+    "image": "assets/players/player-078.webp"
+  },
+  {
+    "id": 79,
+    "name": "N'Golo Kante",
+    "peakRating": 92,
+    "primary": "CDM",
+    "image": "assets/players/player-079.webp"
+  },
+  {
+    "id": 80,
+    "name": "Raphael Varane",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-080.webp"
+  },
+  {
+    "id": 81,
+    "name": "Hugo Lloris",
+    "peakRating": 89,
+    "primary": "GK",
+    "image": "assets/players/player-081.webp"
+  },
+  {
+    "id": 82,
+    "name": "Angel Di Maria",
+    "peakRating": 90,
+    "primary": "RW",
+    "image": "assets/players/player-082.webp"
+  },
+  {
+    "id": 83,
+    "name": "Emiliano Martinez",
+    "peakRating": 88,
+    "primary": "GK",
+    "image": "assets/players/player-083.webp"
+  },
+  {
+    "id": 84,
+    "name": "Enzo Fernandez",
+    "peakRating": 87,
+    "primary": "CM",
+    "image": "assets/players/player-084.webp"
+  },
+  {
+    "id": 85,
+    "name": "Julian Alvarez",
+    "peakRating": 88,
+    "primary": "ST",
+    "image": "assets/players/player-085.webp"
+  },
+  {
+    "id": 86,
+    "name": "Vinicius Junior",
+    "peakRating": 93,
+    "primary": "LW",
+    "image": "assets/players/player-086.webp"
+  },
+  {
+    "id": 87,
+    "name": "Jude Bellingham",
+    "peakRating": 92,
+    "primary": "CAM",
+    "image": "assets/players/player-087.webp"
+  },
+  {
+    "id": 88,
+    "name": "Harry Kane",
+    "peakRating": 92,
+    "primary": "ST",
+    "image": "assets/players/player-088.webp"
+  },
+  {
+    "id": 89,
+    "name": "Son Heung-min",
+    "peakRating": 91,
+    "primary": "LW",
+    "image": "assets/players/player-089.webp"
+  },
+  {
+    "id": 90,
+    "name": "Yaya Toure",
+    "peakRating": 91,
+    "primary": "CM",
+    "image": "assets/players/player-090.webp"
+  },
+  {
+    "id": 91,
+    "name": "Lev Yashin",
+    "peakRating": 96,
+    "primary": "GK",
+    "image": "assets/players/player-091.webp"
+  },
+  {
+    "id": 92,
+    "name": "Franz Beckenbauer",
+    "peakRating": 97,
+    "primary": "CB",
+    "image": "assets/players/player-092.webp"
+  },
+  {
+    "id": 93,
+    "name": "Gerd Muller",
+    "peakRating": 95,
+    "primary": "ST",
+    "image": "assets/players/player-093.webp"
+  },
+  {
+    "id": 94,
+    "name": "Lothar Matthaus",
+    "peakRating": 95,
+    "primary": "CM",
+    "image": "assets/players/player-094.webp"
+  },
+  {
+    "id": 95,
+    "name": "Oliver Kahn",
+    "peakRating": 94,
+    "primary": "GK",
+    "image": "assets/players/player-095.webp"
+  },
+  {
+    "id": 96,
+    "name": "Roberto Baggio",
+    "peakRating": 94,
+    "primary": "CF",
+    "image": "assets/players/player-096.webp"
+  },
+  {
+    "id": 97,
+    "name": "Francesco Totti",
+    "peakRating": 93,
+    "primary": "CAM",
+    "image": "assets/players/player-097.webp"
+  },
+  {
+    "id": 98,
+    "name": "Alessandro Del Piero",
+    "peakRating": 93,
+    "primary": "CF",
+    "image": "assets/players/player-098.webp"
+  },
+  {
+    "id": 99,
+    "name": "Javier Zanetti",
+    "peakRating": 92,
+    "primary": "RB",
+    "image": "assets/players/player-099.webp"
+  },
+  {
+    "id": 100,
+    "name": "Wesley Sneijder",
+    "peakRating": 92,
+    "primary": "CAM",
+    "image": "assets/players/player-100.webp"
+  },
+  {
+    "id": 101,
+    "name": "Samuel Eto'o",
+    "peakRating": 94,
+    "primary": "ST",
+    "image": "assets/players/player-101.webp"
+  },
+  {
+    "id": 102,
+    "name": "Diego Milito",
+    "peakRating": 91,
+    "primary": "ST",
+    "image": "assets/players/player-102.webp"
+  },
+  {
+    "id": 103,
+    "name": "Lucio",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-103.webp"
+  },
+  {
+    "id": 104,
+    "name": "Maicon",
+    "peakRating": 91,
+    "primary": "RB",
+    "image": "assets/players/player-104.webp"
+  },
+  {
+    "id": 105,
+    "name": "Julio Cesar",
+    "peakRating": 91,
+    "primary": "GK",
+    "image": "assets/players/player-105.webp"
+  },
+  {
+    "id": 106,
+    "name": "Arjen Robben",
+    "peakRating": 94,
+    "primary": "RW",
+    "image": "assets/players/player-106.webp"
+  },
+  {
+    "id": 107,
+    "name": "Franck Ribery",
+    "peakRating": 93,
+    "primary": "LW",
+    "image": "assets/players/player-107.webp"
+  },
+  {
+    "id": 108,
+    "name": "Robert Lewandowski",
+    "peakRating": 96,
+    "primary": "ST",
+    "image": "assets/players/player-108.webp"
+  },
+  {
+    "id": 109,
+    "name": "David Alaba",
+    "peakRating": 90,
+    "primary": "LB",
+    "image": "assets/players/player-109.webp"
+  },
+  {
+    "id": 110,
+    "name": "Jerome Boateng",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-110.webp"
+  },
+  {
+    "id": 111,
+    "name": "Mats Hummels",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-111.webp"
+  },
+  {
+    "id": 112,
+    "name": "Mario Gotze",
+    "peakRating": 89,
+    "primary": "CAM",
+    "image": "assets/players/player-112.webp"
+  },
+  {
+    "id": 113,
+    "name": "Marco Reus",
+    "peakRating": 90,
+    "primary": "LW",
+    "image": "assets/players/player-113.webp"
+  },
+  {
+    "id": 114,
+    "name": "Sergio Aguero",
+    "peakRating": 94,
+    "primary": "ST",
+    "image": "assets/players/player-114.webp"
+  },
+  {
+    "id": 115,
+    "name": "David Silva",
+    "peakRating": 93,
+    "primary": "CAM",
+    "image": "assets/players/player-115.webp"
+  },
+  {
+    "id": 116,
+    "name": "Vincent Kompany",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-116.webp"
+  },
+  {
+    "id": 117,
+    "name": "Joe Hart",
+    "peakRating": 87,
+    "primary": "GK",
+    "image": "assets/players/player-117.webp"
+  },
+  {
+    "id": 118,
+    "name": "Eden Hazard",
+    "peakRating": 93,
+    "primary": "LW",
+    "image": "assets/players/player-118.webp"
+  },
+  {
+    "id": 119,
+    "name": "Cesc Fabregas",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-119.webp"
+  },
+  {
+    "id": 120,
+    "name": "Michael Ballack",
+    "peakRating": 91,
+    "primary": "CM",
+    "image": "assets/players/player-120.webp"
+  },
+  {
+    "id": 121,
+    "name": "Claude Makelele",
+    "peakRating": 92,
+    "primary": "CDM",
+    "image": "assets/players/player-121.webp"
+  },
+  {
+    "id": 122,
+    "name": "Marcel Desailly",
+    "peakRating": 92,
+    "primary": "CB",
+    "image": "assets/players/player-122.webp"
+  },
+  {
+    "id": 123,
+    "name": "Lilian Thuram",
+    "peakRating": 92,
+    "primary": "RB",
+    "image": "assets/players/player-123.webp"
+  },
+  {
+    "id": 124,
+    "name": "Laurent Blanc",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-124.webp"
+  },
+  {
+    "id": 125,
+    "name": "Youri Djorkaeff",
+    "peakRating": 89,
+    "primary": "CAM",
+    "image": "assets/players/player-125.webp"
+  },
+  {
+    "id": 126,
+    "name": "David Beckham",
+    "peakRating": 92,
+    "primary": "RM",
+    "image": "assets/players/player-126.webp"
+  },
+  {
+    "id": 127,
+    "name": "Roy Keane",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-127.webp"
+  },
+  {
+    "id": 128,
+    "name": "Jaap Stam",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-128.webp"
+  },
+  {
+    "id": 129,
+    "name": "Dwight Yorke",
+    "peakRating": 89,
+    "primary": "ST",
+    "image": "assets/players/player-129.webp"
+  },
+  {
+    "id": 130,
+    "name": "Andy Cole",
+    "peakRating": 89,
+    "primary": "ST",
+    "image": "assets/players/player-130.webp"
+  },
+  {
+    "id": 131,
+    "name": "Michael Owen",
+    "peakRating": 90,
+    "primary": "ST",
+    "image": "assets/players/player-131.webp"
+  },
+  {
+    "id": 132,
+    "name": "Fernando Torres",
+    "peakRating": 92,
+    "primary": "ST",
+    "image": "assets/players/player-132.webp"
+  },
+  {
+    "id": 133,
+    "name": "David De Gea",
+    "peakRating": 90,
+    "primary": "GK",
+    "image": "assets/players/player-133.webp"
+  },
+  {
+    "id": 134,
+    "name": "Trent Alexander-Arnold",
+    "peakRating": 89,
+    "primary": "RB",
+    "image": "assets/players/player-134.webp"
+  },
+  {
+    "id": 135,
+    "name": "Andrew Robertson",
+    "peakRating": 88,
+    "primary": "LB",
+    "image": "assets/players/player-135.webp"
+  },
+  {
+    "id": 136,
+    "name": "Fabinho",
+    "peakRating": 89,
+    "primary": "CDM",
+    "image": "assets/players/player-136.webp"
+  },
+  {
+    "id": 137,
+    "name": "Jordan Henderson",
+    "peakRating": 88,
+    "primary": "CM",
+    "image": "assets/players/player-137.webp"
+  },
+  {
+    "id": 138,
+    "name": "Romario",
+    "peakRating": 96,
+    "primary": "ST",
+    "image": "assets/players/player-138.webp"
+  },
+  {
+    "id": 139,
+    "name": "Bebeto",
+    "peakRating": 90,
+    "primary": "ST",
+    "image": "assets/players/player-139.webp"
+  },
+  {
+    "id": 140,
+    "name": "Dunga",
+    "peakRating": 89,
+    "primary": "CDM",
+    "image": "assets/players/player-140.webp"
+  },
+  {
+    "id": 141,
+    "name": "Claudio Taffarel",
+    "peakRating": 89,
+    "primary": "GK",
+    "image": "assets/players/player-141.webp"
+  },
+  {
+    "id": 142,
+    "name": "Hristo Stoichkov",
+    "peakRating": 93,
+    "primary": "LW",
+    "image": "assets/players/player-142.webp"
+  },
+  {
+    "id": 143,
+    "name": "Michael Laudrup",
+    "peakRating": 93,
+    "primary": "CAM",
+    "image": "assets/players/player-143.webp"
+  },
+  {
+    "id": 144,
+    "name": "Ronald Koeman",
+    "peakRating": 91,
+    "primary": "CB",
+    "image": "assets/players/player-144.webp"
+  },
+  {
+    "id": 145,
+    "name": "Luis Figo",
+    "peakRating": 94,
+    "primary": "RW",
+    "image": "assets/players/player-145.webp"
+  },
+  {
+    "id": 146,
+    "name": "Deco",
+    "peakRating": 91,
+    "primary": "CM",
+    "image": "assets/players/player-146.webp"
+  },
+  {
+    "id": 147,
+    "name": "Rui Costa",
+    "peakRating": 90,
+    "primary": "CAM",
+    "image": "assets/players/player-147.webp"
+  },
+  {
+    "id": 148,
+    "name": "Pepe",
+    "peakRating": 90,
+    "primary": "CB",
+    "image": "assets/players/player-148.webp"
+  },
+  {
+    "id": 149,
+    "name": "Joao Moutinho",
+    "peakRating": 88,
+    "primary": "CM",
+    "image": "assets/players/player-149.webp"
+  },
+  {
+    "id": 150,
+    "name": "Eusebio",
+    "peakRating": 96,
+    "primary": "ST",
+    "image": "assets/players/player-150.webp"
+  },
+  {
+    "id": 151,
+    "name": "Ferenc Puskas",
+    "peakRating": 97,
+    "primary": "ST",
+    "image": "assets/players/player-151.webp"
+  },
+  {
+    "id": 152,
+    "name": "Alfredo Di Stefano",
+    "peakRating": 97,
+    "primary": "CF",
+    "image": "assets/players/player-152.webp"
+  },
+  {
+    "id": 153,
+    "name": "Garrincha",
+    "peakRating": 96,
+    "primary": "RW",
+    "image": "assets/players/player-153.webp"
+  },
+  {
+    "id": 154,
+    "name": "Bobby Charlton",
+    "peakRating": 95,
+    "primary": "CAM",
+    "image": "assets/players/player-154.webp"
+  },
+  {
+    "id": 155,
+    "name": "Bobby Moore",
+    "peakRating": 94,
+    "primary": "CB",
+    "image": "assets/players/player-155.webp"
+  },
+  {
+    "id": 156,
+    "name": "Gordon Banks",
+    "peakRating": 92,
+    "primary": "GK",
+    "image": "assets/players/player-156.webp"
+  },
+  {
+    "id": 157,
+    "name": "Gary Lineker",
+    "peakRating": 89,
+    "primary": "ST",
+    "image": "assets/players/player-157.webp"
+  },
+  {
+    "id": 158,
+    "name": "Paul Gascoigne",
+    "peakRating": 90,
+    "primary": "CAM",
+    "image": "assets/players/player-158.webp"
+  },
+  {
+    "id": 159,
+    "name": "Ousmane Dembele",
+    "peakRating": 96,
+    "primary": "RW",
+    "image": "assets/players/player-159.webp"
+  },
+  {
+    "id": 160,
+    "name": "Lamine Yamal",
+    "peakRating": 95,
+    "primary": "RW",
+    "image": "assets/players/player-160.webp"
+  },
+  {
+    "id": 161,
+    "name": "Vitinha",
+    "peakRating": 92,
+    "primary": "CM",
+    "image": "assets/players/player-161.webp"
+  },
+  {
+    "id": 162,
+    "name": "Raphinha",
+    "peakRating": 92,
+    "primary": "RW",
+    "image": "assets/players/player-162.webp"
+  },
+  {
+    "id": 163,
+    "name": "Achraf Hakimi",
+    "peakRating": 91,
+    "primary": "RB",
+    "image": "assets/players/player-163.webp"
+  },
+  {
+    "id": 164,
+    "name": "Nuno Mendes",
+    "peakRating": 89,
+    "primary": "LB",
+    "image": "assets/players/player-164.webp"
+  },
+  {
+    "id": 165,
+    "name": "Desire Doue",
+    "peakRating": 86,
+    "primary": "CAM",
+    "image": "assets/players/player-165.webp"
+  },
+  {
+    "id": 166,
+    "name": "Viktor Gyokeres",
+    "peakRating": 90,
+    "primary": "ST",
+    "image": "assets/players/player-166.webp"
+  },
+  {
+    "id": 167,
+    "name": "Khvicha Kvaratskhelia",
+    "peakRating": 91,
+    "primary": "LW",
+    "image": "assets/players/player-167.webp"
+  },
+  {
+    "id": 168,
+    "name": "Gianluigi Donnarumma",
+    "peakRating": 92,
+    "primary": "GK",
+    "image": "assets/players/player-168.webp"
+  },
+  {
+    "id": 169,
+    "name": "Pedri",
+    "peakRating": 91,
+    "primary": "CM",
+    "image": "assets/players/player-169.webp"
+  },
+  {
+    "id": 170,
+    "name": "Cole Palmer",
+    "peakRating": 91,
+    "primary": "CAM",
+    "image": "assets/players/player-170.webp"
+  },
+  {
+    "id": 171,
+    "name": "Lautaro Martinez",
+    "peakRating": 91,
+    "primary": "ST",
+    "image": "assets/players/player-171.webp"
+  },
+  {
+    "id": 172,
+    "name": "Alexis Mac Allister",
+    "peakRating": 88,
+    "primary": "CM",
+    "image": "assets/players/player-172.webp"
+  },
+  {
+    "id": 173,
+    "name": "Florian Wirtz",
+    "peakRating": 92,
+    "primary": "CAM",
+    "image": "assets/players/player-173.webp"
+  },
+  {
+    "id": 174,
+    "name": "Jamal Musiala",
+    "peakRating": 91,
+    "primary": "CAM",
+    "image": "assets/players/player-174.webp"
+  },
+  {
+    "id": 175,
+    "name": "Bukayo Saka",
+    "peakRating": 90,
+    "primary": "RW",
+    "image": "assets/players/player-175.webp"
+  },
+  {
+    "id": 176,
+    "name": "Martin Odegaard",
+    "peakRating": 90,
+    "primary": "CAM",
+    "image": "assets/players/player-176.webp"
+  },
+  {
+    "id": 177,
+    "name": "Declan Rice",
+    "peakRating": 89,
+    "primary": "CDM",
+    "image": "assets/players/player-177.webp"
+  },
+  {
+    "id": 178,
+    "name": "William Saliba",
+    "peakRating": 88,
+    "primary": "CB",
+    "image": "assets/players/player-178.webp"
+  },
+  {
+    "id": 179,
+    "name": "Gabriel Magalhaes",
+    "peakRating": 87,
+    "primary": "CB",
+    "image": "assets/players/player-179.webp"
+  },
+  {
+    "id": 180,
+    "name": "Federico Valverde",
+    "peakRating": 90,
+    "primary": "CM",
+    "image": "assets/players/player-180.webp"
+  },
+  {
+    "id": 181,
+    "name": "Aurelien Tchouameni",
+    "peakRating": 88,
+    "primary": "CDM",
+    "image": "assets/players/player-181.webp"
+  },
+  {
+    "id": 182,
+    "name": "Eduardo Camavinga",
+    "peakRating": 87,
+    "primary": "CM",
+    "image": "assets/players/player-182.webp"
+  },
+  {
+    "id": 183,
+    "name": "Rodrygo",
+    "peakRating": 89,
+    "primary": "RW",
+    "image": "assets/players/player-183.webp"
+  },
+  {
+    "id": 184,
+    "name": "Dani Carvajal",
+    "peakRating": 89,
+    "primary": "RB",
+    "image": "assets/players/player-184.webp"
+  },
+  {
+    "id": 185,
+    "name": "Thibaut Courtois",
+    "peakRating": 92,
+    "primary": "GK",
+    "image": "assets/players/player-185.webp"
+  },
+  {
+    "id": 186,
+    "name": "Jan Oblak",
+    "peakRating": 90,
+    "primary": "GK",
+    "image": "assets/players/player-186.webp"
+  },
+  {
+    "id": 187,
+    "name": "Mike Maignan",
+    "peakRating": 89,
+    "primary": "GK",
+    "image": "assets/players/player-187.webp"
+  },
+  {
+    "id": 188,
+    "name": "Nicolo Barella",
+    "peakRating": 89,
+    "primary": "CM",
+    "image": "assets/players/player-188.webp"
+  },
+  {
+    "id": 189,
+    "name": "Alessandro Bastoni",
+    "peakRating": 88,
+    "primary": "CB",
+    "image": "assets/players/player-189.webp"
+  },
+  {
+    "id": 190,
+    "name": "Federico Dimarco",
+    "peakRating": 87,
+    "primary": "LWB",
+    "image": "assets/players/player-190.webp"
+  },
+  {
+    "id": 191,
+    "name": "Hakan Calhanoglu",
+    "peakRating": 88,
+    "primary": "CDM",
+    "image": "assets/players/player-191.webp"
+  },
+  {
+    "id": 192,
+    "name": "Victor Osimhen",
+    "peakRating": 91,
+    "primary": "ST",
+    "image": "assets/players/player-192.webp"
+  },
+  {
+    "id": 193,
+    "name": "Ademola Lookman",
+    "peakRating": 88,
+    "primary": "LW",
+    "image": "assets/players/player-193.webp"
+  },
+  {
+    "id": 194,
+    "name": "Alexander Isak",
+    "peakRating": 90,
+    "primary": "ST",
+    "image": "assets/players/player-194.webp"
+  },
+  {
+    "id": 195,
+    "name": "Bruno Fernandes",
+    "peakRating": 90,
+    "primary": "CAM",
+    "image": "assets/players/player-195.webp"
+  },
+  {
+    "id": 196,
+    "name": "Rafael Leao",
+    "peakRating": 89,
+    "primary": "LW",
+    "image": "assets/players/player-196.webp"
+  },
+  {
+    "id": 197,
+    "name": "Joao Neves",
+    "peakRating": 86,
+    "primary": "CDM",
+    "image": "assets/players/player-197.webp"
+  },
+  {
+    "id": 198,
+    "name": "Warren Zaire-Emery",
+    "peakRating": 86,
+    "primary": "CM",
+    "image": "assets/players/player-198.webp"
+  },
+  {
+    "id": 199,
+    "name": "Endrick",
+    "peakRating": 84,
+    "primary": "ST",
+    "image": "assets/players/player-199.webp"
+  },
+  {
+    "id": 200,
+    "name": "Estevao",
+    "peakRating": 84,
+    "primary": "RW",
+    "image": "assets/players/player-200.webp"
+  }
+]
