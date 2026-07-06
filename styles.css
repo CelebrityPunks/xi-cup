@@ -226,6 +226,52 @@ button:disabled {
   text-transform: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.team-name-field {
+  display: block;
+  min-width: 0;
+}
+
+.team-name-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 280px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px dashed rgba(38, 241, 223, 0.35);
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.team-name-input:focus {
+  border-bottom-color: rgba(38, 241, 223, 0.85);
+}
+
+.team-name-input:disabled {
+  border-bottom-color: transparent;
+  cursor: default;
+}
+
 .status-dot {
   width: 9px;
   height: 9px;
@@ -1637,8 +1683,9 @@ body::before {
 .versus-room-code-box strong {
   color: #26f1df;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-  font-size: 18px;
-  letter-spacing: 0.04em;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
 }
 
 .versus-local-notice {
@@ -1720,6 +1767,83 @@ body::before {
   font-style: normal;
   color: var(--muted);
   font-size: 12px;
+}
+
+.versus-cup-wait {
+  margin-top: 12px;
+  color: var(--teal);
+}
+
+.versus-standings {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.versus-standing-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 11, 13, 0.42);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.versus-standing-row.user-team {
+  border-color: rgba(38, 241, 223, 0.42);
+  background: rgba(38, 241, 223, 0.1);
+}
+
+.versus-standing-row.opponent-team {
+  border-color: rgba(243, 193, 91, 0.34);
+  background: rgba(243, 193, 91, 0.08);
+}
+
+.versus-standing-row.champion {
+  border-color: rgba(243, 193, 91, 0.62);
+  box-shadow: 0 0 18px rgba(243, 193, 91, 0.14);
+}
+
+.versus-standing-rank {
+  color: var(--gold);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.versus-standing-row strong {
+  display: block;
+  font-size: 13px;
+}
+
+.versus-standing-row span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.versus-standing-row em {
+  color: var(--teal);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.versus-standing-row.champion em,
+.versus-standing-row.user-team.champion em {
+  color: var(--gold);
+}
+
+.versus-final-summary {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
 }
 
 @media (max-width: 900px) {
@@ -2093,7 +2217,9 @@ body::before {
 }
 
 .pitch-wrap {
-  padding: 0 24px 20px;
+  width: 100%;
+  padding: 0 16px 20px;
+  box-sizing: border-box;
 }
 
 .pitch {
@@ -2725,14 +2851,15 @@ body::before {
 }
 
 .pitch-wrap {
-  display: flex;
-  justify-content: center;
-  padding-top: 22px;
+  display: block;
+  width: 100%;
+  padding: 22px 16px 20px;
+  box-sizing: border-box;
   perspective: 1400px;
 }
 
 .pitch {
-  width: min(100%, 560px);
+  width: 100%;
   aspect-ratio: 0.69;
   min-height: 0;
   transform: rotateX(9deg) rotateZ(0deg);
@@ -2759,7 +2886,7 @@ body::before {
 }
 
 .slot {
-  width: clamp(58px, 5.1vw, 82px);
+  width: clamp(70px, 9%, 108px);
   min-height: 76px;
   cursor: pointer;
 }
@@ -2770,10 +2897,6 @@ body::before {
 
 .slot.filled-slot:active {
   cursor: grabbing;
-}
-
-.empty-slot {
-  min-height: 66px;
 }
 
 .player-mini {

@@ -9,17 +9,8 @@
   var MANAGER_LINK_PLAYER_CAP = 3;
   var PLAYER_IMAGE_DIR = "assets/players/";
   var MANAGER_IMAGE_DIR = "assets/managers/";
-  var VERIFIED_PLAYER_IMAGE_IDS = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-    31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-    41, 42, 43, 44, 45, 46, 47, 48, 49, 50,
-    51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-    61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
-    71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
-    159, 160, 161, 162, 163
-  ];
+  var VERIFIED_PLAYER_IMAGE_MAX_ID = 240;
+  var VERIFIED_PLAYER_IMAGE_IDS = buildIdRange(VERIFIED_PLAYER_IMAGE_MAX_ID);
   var verifiedPlayerImageIdSet = VERIFIED_PLAYER_IMAGE_IDS.reduce(function (acc, id) {
     acc[id] = true;
     return acc;
@@ -454,6 +445,12 @@
     return { name: name, type: type, points: points, tags: tags, minCount: minCount, requiredIds: requiredIds };
   }
 
+  function buildIdRange(maxId) {
+    var ids = [];
+    for (var id = 1; id <= maxId; id += 1) ids.push(id);
+    return ids;
+  }
+
   function newDraftState() {
     var draft = {
       mode: "draft",
@@ -504,6 +501,7 @@
       myReady: false,
       opponentTeam: null,
       series: null,
+      cupResult: null,
       error: ""
     };
   }
@@ -658,9 +656,13 @@
   }
 
   function sample(items, count) {
+    return seededSample(items, count, Math.random);
+  }
+
+  function seededSample(items, count, rng) {
     var copy = items.slice();
     for (var i = copy.length - 1; i > 0; i -= 1) {
-      var j = Math.floor(Math.random() * (i + 1));
+      var j = Math.floor(rng() * (i + 1));
       var temp = copy[i];
       copy[i] = copy[j];
       copy[j] = temp;
@@ -777,7 +779,7 @@
     return [
       '<section class="panel field-panel">',
       '<div class="panel-header">',
-      '<div class="panel-title"><span class="status-dot"></span><div><h2>' + escapeHtml(state.teamName) + '</h2><small>' + escapeHtml(formationLabel) + ' · ' + escapeHtml(managerLabel) + '</small></div></div>',
+      '<div class="panel-title"><span class="status-dot"></span><div><label class="team-name-field"><span class="sr-only">Team name</span><input class="team-name-input" type="text" maxlength="34" value="' + escapeHtml(state.teamName) + '" data-team-name-input ' + (canEditTeamName() ? "" : "disabled") + '></label><small>' + escapeHtml(formationLabel) + ' · ' + escapeHtml(managerLabel) + '</small></div></div>',
       '<div class="field-rating-pill"><strong>' + rating.total.toFixed(1) + '</strong><span>Rating</span></div>',
       '<div class="actions-row field-controls">',
       '<label class="auto-place-toggle"><input type="checkbox" data-toggle-auto-place ' + (state.autoPlace ? "checked" : "") + '><span>Auto-place</span></label>',
@@ -1051,6 +1053,12 @@
 
   function playerAsset(id) {
     return PLAYER_IMAGE_DIR + "player-" + String(id).padStart(3, "0") + ".png";
+  }
+
+  function buildIdRange(maxId) {
+    var ids = [];
+    for (var id = 1; id <= maxId; id++) ids.push(id);
+    return ids;
   }
 
   function slugify(value) {
@@ -1542,6 +1550,18 @@
       });
     });
 
+    app.querySelectorAll("[data-team-name-input]").forEach(function (input) {
+      input.addEventListener("change", function () {
+        updateTeamName(input.value);
+      });
+      input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          input.blur();
+        }
+      });
+    });
+
     app.querySelectorAll("[data-action]").forEach(function (button) {
       button.addEventListener("click", function (event) {
         var action = button.getAttribute("data-action");
@@ -1628,6 +1648,20 @@
     if (action === "leave-versus") leaveVersusRoom();
     if (action === "versus-ready") markVersusReady();
     if (action === "versus-rematch") requestVersusRematch();
+  }
+
+  function canEditTeamName() {
+    if (state.versus && state.versus.connected && state.versus.myReady) return false;
+    return true;
+  }
+
+  function updateTeamName(nextName) {
+    var trimmed = String(nextName || "").trim().slice(0, 34);
+    if (!trimmed || trimmed === state.teamName) return;
+    state.teamName = trimmed;
+    saveState();
+    broadcastVersusStatus();
+    render();
   }
 
   function pickPlayer(playerId) {
@@ -2161,10 +2195,22 @@
     });
     var shuffledBots = sample(teams.slice(1), teams.length - 1);
     var ordered = [teams[0]].concat(shuffledBots);
+    var tournament = createTournamentFromTeams(ordered, {
+      title: "Cup started",
+      detail: userTeam.name + " entered the draw."
+    });
+    state.tournament = tournament;
+    state.activeTab = "solo";
+    scheduleTournamentStep();
+    saveState();
+    render();
+  }
+
+  function createTournamentFromTeams(orderedTeams, logEntry) {
     var groups = ["Group A", "Group B", "Group C", "Group D"].map(function (name, groupIndex) {
       return {
         name: name,
-        teamIds: ordered.slice(groupIndex * 4, groupIndex * 4 + 4).map(function (team) { return team.tournamentId; })
+        teamIds: orderedTeams.slice(groupIndex * 4, groupIndex * 4 + 4).map(function (team) { return team.tournamentId; })
       };
     });
     var tournament = {
@@ -2172,7 +2218,7 @@
       stage: "groups",
       played: 0,
       totalMatches: 31,
-      teams: ordered,
+      teams: orderedTeams,
       groups: groups,
       groupMatches: buildGroupMatches(groups),
       bracketRounds: buildEmptyBracket(),
@@ -2182,12 +2228,19 @@
       log: []
     };
     ensureTournamentTeamNames(tournament);
-    tournament.log.unshift({ stage: "Cup", title: "Cup started", detail: userTeam.name + " entered Group A.", user: true });
-    state.tournament = tournament;
-    state.activeTab = "solo";
-    scheduleTournamentStep();
-    saveState();
-    render();
+    if (logEntry) {
+      tournament.log.unshift({ stage: "Cup", title: logEntry.title, detail: logEntry.detail, user: true });
+    }
+    return tournament;
+  }
+
+  function runTournamentToCompletion(tournament) {
+    var guard = 0;
+    while (tournament.stage !== "complete" && guard < 64) {
+      advanceTournamentStep(tournament);
+      guard += 1;
+    }
+    return tournament;
   }
 
   function cloneTournamentTeam(team, user) {
@@ -2227,8 +2280,8 @@
     ];
   }
 
-  function advanceTournamentStep() {
-    var tournament = state.tournament;
+  function advanceTournamentStep(tournamentOverride) {
+    var tournament = tournamentOverride || state.tournament;
     if (!tournament || tournament.stage === "complete") return;
     if (tournament.stage === "groups") {
       var nextGroupMatch = tournament.groupMatches.find(function (match) { return !match.played; });
@@ -2257,7 +2310,7 @@
     var home = tournamentTeam(tournament, match.homeId);
     var away = tournamentTeam(tournament, match.awayId);
     if (!home || !away) return;
-    var result = simulateTournamentResult(home, away, allowDraw);
+    var result = simulateTournamentResult(home, away, allowDraw, tournament._rng);
     match.played = true;
     match.score = result.score;
     match.winnerId = result.winnerId;
@@ -2271,13 +2324,14 @@
     });
   }
 
-  function simulateTournamentResult(home, away, allowDraw) {
+  function simulateTournamentResult(home, away, allowDraw, rng) {
+    var roll = typeof rng === "function" ? rng : Math.random;
     var odds = winProbability(home.rating, away.rating);
-    if (allowDraw && Math.random() < 0.18) {
-      var drawGoals = Math.random() < 0.6 ? 1 : 2;
+    if (allowDraw && roll() < 0.18) {
+      var drawGoals = roll() < 0.6 ? 1 : 2;
       return { draw: true, winnerId: null, score: drawGoals + "-" + drawGoals, odds: odds };
     }
-    var homeWon = Math.random() < odds;
+    var homeWon = roll() < odds;
     var score = tournamentScoreline(homeWon, odds);
     return { draw: false, winnerId: homeWon ? home.tournamentId : away.tournamentId, score: score, odds: homeWon ? odds : 1 - odds };
   }
@@ -2609,7 +2663,7 @@
     if (!tournament || !tournament.teams) return tournament;
     var usedNames = {};
     tournament.teams.forEach(function (team) {
-      if (team.user || team.tournamentId === "user") {
+      if (team.user || team.tournamentId === "user" || team.tournamentId === "player-a" || team.tournamentId === "player-b") {
         team.name = team.name || state.teamName || "Your Team";
         usedNames[team.name] = true;
         return;
@@ -2688,10 +2742,28 @@
 
   function saveState() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stateForStorage()));
     } catch (error) {
       console.warn("Could not save state", error);
     }
+  }
+
+  function stateForStorage() {
+    if (!state.versus || !state.versus.cupResult || !state.versus.cupResult.tournament) return state;
+    return Object.assign({}, state, {
+      versus: Object.assign({}, state.versus, {
+        cupResult: cupResultForPeer(state.versus.cupResult)
+      })
+    });
+  }
+
+  function cupResultForPeer(cupResult) {
+    if (!cupResult) return null;
+    return {
+      championId: cupResult.championId,
+      championName: cupResult.championName,
+      players: cupResult.players
+    };
   }
 
   function loadState() {
@@ -2747,7 +2819,7 @@
     return [
       '<main class="main-grid versus-grid">',
       renderFieldPanel(rating),
-      state.versus.phase === "series" || state.versus.phase === "done" ? renderVersusSeriesPanel() : renderVersusDraftPanel(teamFull),
+      state.versus.phase === "done" && state.versus.cupResult ? renderVersusFinalPanel() : state.versus.phase === "series" || state.versus.phase === "cup" || state.versus.series ? renderVersusSeriesPanel() : renderVersusDraftPanel(teamFull),
       '</main>',
       '<section class="bottom-grid">',
       renderVersusStatusPanel(),
@@ -2763,15 +2835,15 @@
     return [
       '<main class="versus-lobby">',
       '<section class="panel versus-lobby-panel">',
-      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>1v1 Friend Draft</h2><small>Parallel drafts, then a best-of-5 series</small></div></div></div>',
+      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>1v1 Friend Draft</h2><small>Bo5 head-to-head, then a random World Cup draw</small></div></div></div>',
       '<div class="versus-lobby-body">',
-      '<div class="notice">Honor-system mode for friends. Both players draft on their own screen, lock in a squad, then run a Bo5 head-to-head. No anti-cheat yet.</div>',
+      '<div class="notice">Honor-system mode for friends. Both players draft on their own screen, play a Bo5 series, then both XIs are randomly placed into a 16-team World Cup. Final standings show the head-to-head winner and each cup run.</div>',
       localFile ? '<div class="notice versus-local-notice">You opened the game from a folder on your computer. Invite links with that folder path only work on your machine. Share the <strong>room code</strong> instead, or host the game on a public web link so one-click invites work.</div>' : "",
       versus.error ? '<div class="versus-error">' + escapeHtml(versus.error) + '</div>' : "",
       '<div class="versus-lobby-grid">',
       '<div class="versus-card">',
       '<div class="section-label">Host a room</div>',
-      '<p>' + (localFile ? "Create a room, then send your friend the room code." : "Create a room and send the invite link to a friend on another device.") + '</p>',
+      '<p>' + (localFile ? "Create a room, then send your friend the 4-digit code." : "Create a room and send the 4-digit code or invite link to a friend on another device.") + '</p>',
       '<button class="primary-button" data-action="create-versus-room">Create Room</button>',
       hosting ? [
         '<div class="versus-room-code-box">',
@@ -2789,7 +2861,7 @@
       '</div>',
       '<div class="versus-card">',
       '<div class="section-label">Join a friend</div>',
-      '<p>Open the game on your device, then enter the room code your friend sent you' + (localFile ? "." : ", or open their invite URL directly.") + '</p>',
+      '<p>Open the game on your device, then enter the 4-digit code your friend sent you' + (localFile ? "." : ", or open their invite URL directly.") + '</p>',
       '<button class="ghost-button" data-action="join-versus-room">Join With Code</button>',
       '</div>',
       '</div>',
@@ -2806,7 +2878,7 @@
       var lineupReady = isFieldComplete(state);
       return [
         '<aside class="panel draft-panel">',
-        '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>Draft Complete</h2><small>Lock your XI for the Bo5 series.</small></div></div></div>',
+        '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>Draft Complete</h2><small>Lock your XI for the Bo5 and World Cup run.</small></div></div></div>',
         '<div class="draft-body">',
         '<div class="versus-ready-grid">',
         metric("You", versus.myReady ? "Ready" : "Not ready", versus.myReady ? "green" : ""),
@@ -2856,7 +2928,58 @@
         return '<div class="versus-match-row ' + (userWon ? "win" : "loss") + '"><strong>Game ' + match.n + '</strong><span>' + escapeHtml(match.home) + ' ' + escapeHtml(match.score) + ' ' + escapeHtml(match.away) + '</span><em>' + (userWon ? "W" : "L") + (userHome ? " · home" : " · away") + '</em></div>';
       }).join(""),
       '</div>',
-      versus.phase === "done" ? '<div class="actions-row"><button class="primary-button" data-action="versus-rematch">Draft Rematch</button><button class="ghost-button" data-action="leave-versus">Leave Room</button></div>' : "",
+      versus.phase === "cup" ? '<div class="notice versus-cup-wait">Both squads are locked. Running the random World Cup draw now…</div>' : "",
+      versus.phase === "done" && !versus.cupResult ? '<div class="actions-row"><button class="primary-button" data-action="versus-rematch">Draft Rematch</button><button class="ghost-button" data-action="leave-versus">Leave Room</button></div>' : "",
+      '</div>',
+      '</aside>'
+    ].join("");
+  }
+
+  function renderVersusFinalPanel() {
+    var versus = state.versus;
+    var series = versus.series;
+    var cupResult = versus.cupResult;
+    var myTeam = snapshotTeam(state, state.teamName);
+    var myCupId = myVersusCupTeamId();
+    var myCupRow = cupResult.players.find(function (row) { return row.teamId === myCupId; }) || cupResult.players[0];
+    var oppCupRow = cupResult.players.find(function (row) { return row.teamId === opponentVersusCupTeamId(); }) || cupResult.players[1];
+    var myIsA = series && series.teamA === myTeam.name;
+    var myWins = series ? (myIsA ? series.winsA : series.winsB) : 0;
+    var oppWins = series ? (myIsA ? series.winsB : series.winsA) : 0;
+    var wonBo5 = series && series.winnerName === myTeam.name;
+    return [
+      '<aside class="panel draft-panel versus-final-panel">',
+      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>Final Standings</h2><small>Bo5 result and World Cup finishes</small></div></div></div>',
+      '<div class="draft-body">',
+      '<div class="section-label">Head-to-head Bo5</div>',
+      '<div class="versus-scoreline">',
+      metric("You", String(myWins), wonBo5 ? "gold" : ""),
+      metric("Opponent", String(oppWins), !wonBo5 ? "red" : ""),
+      metric("Bo5", wonBo5 ? "Win" : "Loss", wonBo5 ? "gold" : "red"),
+      '</div>',
+      series ? '<div class="versus-match-list">' + series.matches.map(function (match) {
+        var userHome = match.home === myTeam.name;
+        var userWon = match.winnerName === myTeam.name;
+        return '<div class="versus-match-row ' + (userWon ? "win" : "loss") + '"><strong>Game ' + match.n + '</strong><span>' + escapeHtml(match.home) + ' ' + escapeHtml(match.score) + ' ' + escapeHtml(match.away) + '</span><em>' + (userWon ? "W" : "L") + '</em></div>';
+      }).join("") + '</div>' : "",
+      '<div class="section-label">World Cup draw</div>',
+      '<div class="notice">Champion: <strong>' + escapeHtml(cupResult.championName || "TBD") + '</strong>. Both XIs were randomly placed into the 16-team field with 14 AI sides.</div>',
+      '<div class="versus-standings">',
+      cupResult.players.map(function (row, index) {
+        var isMe = row.teamId === myCupId;
+        var isOpp = row.teamId === opponentVersusCupTeamId();
+        return '<div class="versus-standing-row ' + (isMe ? "user-team" : "") + ' ' + (isOpp ? "opponent-team" : "") + ' ' + (row.champion ? "champion" : "") + '">',
+        '<span class="versus-standing-rank">#' + (index + 1) + '</span>',
+        '<div><strong>' + escapeHtml(row.name) + (isMe ? " (You)" : isOpp ? " (Opponent)" : "") + '</strong><span>' + escapeHtml(row.groupName) + ' #' + row.groupRank + ' · ' + escapeHtml(row.cupDetail) + '</span></div>',
+        '<em>' + escapeHtml(row.cupLabel) + '</em>',
+        '</div>';
+      }).join(""),
+      '</div>',
+      '<div class="versus-final-summary">',
+      '<div class="notice"><strong>Your cup run:</strong> ' + escapeHtml(myCupRow.cupDetail) + '</div>',
+      '<div class="notice"><strong>Opponent cup run:</strong> ' + escapeHtml(oppCupRow.cupDetail) + '</div>',
+      '</div>',
+      '<div class="actions-row"><button class="primary-button" data-action="versus-rematch">Draft Rematch</button><button class="ghost-button" data-action="leave-versus">Leave Room</button></div>',
       '</div>',
       '</aside>'
     ].join("");
@@ -2880,6 +3003,46 @@
       '</div>',
       '</section>'
     ].join("");
+  }
+
+  var VERSUS_ROOM_PREFIX = "xicup-";
+
+  function generateVersusRoomCode() {
+    return String(1000 + Math.floor(Math.random() * 9000));
+  }
+
+  function versusPeerIdFromCode(roomCode) {
+    var digits = String(roomCode || "").replace(/\D/g, "");
+    if (!digits) return "";
+    return VERSUS_ROOM_PREFIX + digits.padStart(4, "0").slice(-4);
+  }
+
+  function normalizeVersusJoinInput(input) {
+    var raw = String(input || "").trim();
+    if (!raw) return { roomCode: "", peerId: "" };
+    if (raw.indexOf("join=") !== -1) {
+      try {
+        raw = new URL(raw).searchParams.get("join") || raw;
+      } catch (error) {
+        var joinMatch = raw.match(/join=([^&]+)/);
+        if (joinMatch) raw = decodeURIComponent(joinMatch[1]);
+      }
+    }
+    raw = raw.trim();
+    if (raw.indexOf(VERSUS_ROOM_PREFIX) === 0) {
+      var suffix = raw.slice(VERSUS_ROOM_PREFIX.length);
+      if (/^\d{1,4}$/.test(suffix)) {
+        var padded = suffix.padStart(4, "0");
+        return { roomCode: padded, peerId: versusPeerIdFromCode(padded) };
+      }
+      return { roomCode: raw, peerId: raw };
+    }
+    var digits = raw.replace(/\D/g, "");
+    if (digits) {
+      var code = digits.padStart(4, "0").slice(-4);
+      return { roomCode: code, peerId: versusPeerIdFromCode(code) };
+    }
+    return { roomCode: raw, peerId: raw };
   }
 
   function isLocalFileGame() {
@@ -2918,12 +3081,13 @@
       return;
     }
     cleanupPeer();
-    var roomId = "xicup-" + Math.random().toString(36).slice(2, 10);
+    var roomCode = generateVersusRoomCode();
+    var peerId = versusPeerIdFromCode(roomCode);
     state.versus = defaultVersusState();
     state.versus.role = "host";
-    state.versus.roomId = roomId;
+    state.versus.roomId = roomCode;
     state.activeTab = "versus";
-    peer = new Peer(roomId, { debug: 1 });
+    peer = new Peer(peerId, { debug: 1 });
     peer.on("open", function () {
       state.versus.error = "";
       saveState();
@@ -2954,15 +3118,15 @@
       return;
     }
     cleanupPeer();
-    roomId = String(roomId || "").trim();
-    if (!roomId) return;
+    var resolved = normalizeVersusJoinInput(roomId);
+    if (!resolved.peerId) return;
     state.versus = defaultVersusState();
     state.versus.role = "guest";
-    state.versus.roomId = roomId;
+    state.versus.roomId = resolved.roomCode;
     state.activeTab = "versus";
     peer = new Peer({ debug: 1 });
     peer.on("open", function () {
-      var connection = peer.connect(roomId, { reliable: true });
+      var connection = peer.connect(resolved.peerId, { reliable: true });
       setupPeerConnection(connection);
     });
     peer.on("error", function (error) {
@@ -3036,6 +3200,13 @@
     }
     if (payload.type === "series") {
       state.versus.series = payload.series || null;
+      state.versus.phase = "cup";
+      saveState();
+      render();
+      return;
+    }
+    if (payload.type === "cup") {
+      state.versus.cupResult = payload.cupResult || null;
       state.versus.phase = "done";
       saveState();
       render();
@@ -3069,6 +3240,7 @@
     state.versus.opponentReady = false;
     state.versus.opponentTeam = null;
     state.versus.series = null;
+    state.versus.cupResult = null;
     state.tournament = null;
     selectedSource = null;
     saveState();
@@ -3097,14 +3269,130 @@
     render();
   }
 
+  function myVersusCupTeamId() {
+    return state.versus && state.versus.role === "host" ? "player-a" : "player-b";
+  }
+
+  function opponentVersusCupTeamId() {
+    return myVersusCupTeamId() === "player-a" ? "player-b" : "player-a";
+  }
+
+  function pickSeededTournamentBots(count, rng) {
+    if (!state.bots || state.bots.length < count) state.bots = generateBotPool();
+    state.bots = ensureBotTeamNames(state.bots);
+    var sorted = state.bots.slice().sort(function (a, b) {
+      return String(a.id).localeCompare(String(b.id));
+    });
+    return seededSample(sorted, count, rng);
+  }
+
+  function runVersusWorldCup(teamA, teamB) {
+    var seed = hashString(String(state.versus.roomId) + "|cup|" + teamA.id + "|" + teamB.id);
+    var rng = makeSeededRng(seed);
+    var playerA = cloneTournamentTeam(teamA, false);
+    playerA.tournamentId = "player-a";
+    playerA.name = teamA.name;
+    var playerB = cloneTournamentTeam(teamB, false);
+    playerB.tournamentId = "player-b";
+    playerB.name = teamB.name;
+    var botTeams = pickSeededTournamentBots(14, rng).map(function (bot, index) {
+      var entry = cloneTournamentTeam(bot, false);
+      entry.tournamentId = "bot-" + (index + 1);
+      return entry;
+    });
+    var ordered = seededSample([playerA, playerB].concat(botTeams), 16, rng);
+    var tournament = createTournamentFromTeams(ordered, {
+      title: "World Cup draw",
+      detail: teamA.name + " and " + teamB.name + " were randomly placed into the groups."
+    });
+    tournament._rng = rng;
+    runTournamentToCompletion(tournament);
+    delete tournament._rng;
+    return buildVersusCupResult(tournament);
+  }
+
+  function getTeamCupFinish(tournament, teamId) {
+    var group = tournament.groups.find(function (item) { return item.teamIds.indexOf(teamId) !== -1; });
+    var table = group ? groupTable(tournament, group) : [];
+    var groupRank = table.findIndex(function (row) { return row.team.tournamentId === teamId; }) + 1;
+    var groupName = group ? group.name : "-";
+    if (tournament.championId === teamId) {
+      return { label: "Champion", detail: "Won the final", groupName: groupName, groupRank: groupRank, score: 100, tone: "gold" };
+    }
+    var exitRound = "";
+    tournament.bracketRounds.forEach(function (round) {
+      round.matches.forEach(function (match) {
+        if (!match.played) return;
+        if (match.homeId !== teamId && match.awayId !== teamId) return;
+        if (match.winnerId !== teamId) exitRound = round.name;
+      });
+    });
+    if (exitRound === "Final") {
+      return { label: "Runner-up", detail: "Lost in the final", groupName: groupName, groupRank: groupRank, score: 80, tone: "gold" };
+    }
+    if (exitRound === "Semifinals") {
+      return { label: "Semifinals", detail: "Eliminated in semifinals", groupName: groupName, groupRank: groupRank, score: 60, tone: "" };
+    }
+    if (exitRound === "Quarterfinals") {
+      return { label: "Quarterfinals", detail: "Eliminated in quarterfinals", groupName: groupName, groupRank: groupRank, score: 40, tone: "" };
+    }
+    if (groupRank > 0 && groupRank <= 2) {
+      return { label: "Missed knockout", detail: groupName + " #" + groupRank + " but did not advance", groupName: groupName, groupRank: groupRank, score: 20, tone: "" };
+    }
+    return {
+      label: "Group exit",
+      detail: groupName + " finished #" + (groupRank || 4),
+      groupName: groupName,
+      groupRank: groupRank || 4,
+      score: groupRank === 3 ? 10 : 0,
+      tone: "red"
+    };
+  }
+
+  function buildVersusCupResult(tournament) {
+    var playerRows = ["player-a", "player-b"].map(function (teamId) {
+      var team = tournamentTeam(tournament, teamId);
+      var finish = getTeamCupFinish(tournament, teamId);
+      return {
+        teamId: teamId,
+        name: team ? team.name : teamId,
+        rating: team ? team.rating : 0,
+        groupName: finish.groupName,
+        groupRank: finish.groupRank,
+        cupLabel: finish.label,
+        cupDetail: finish.detail,
+        cupScore: finish.score,
+        tone: finish.tone,
+        champion: tournament.championId === teamId
+      };
+    });
+    playerRows.sort(function (a, b) { return b.cupScore - a.cupScore || b.rating - a.rating; });
+    return {
+      championId: tournament.championId,
+      championName: tournament.championName,
+      players: playerRows,
+      tournament: tournament
+    };
+  }
+
   function checkVersusSeriesStart() {
     if (!state.versus || !state.versus.myReady || !state.versus.opponentReady || !state.versus.opponentTeam) return;
+    if (state.versus.series || state.versus.phase === "cup" || state.versus.phase === "done") return;
     var myTeam = snapshotTeam(state, state.teamName);
     if (state.versus.role === "host") {
       var series = runBo5Series(myTeam, state.versus.opponentTeam);
       state.versus.series = series;
-      state.versus.phase = "done";
+      state.versus.phase = "series";
       sendVersusMessage({ type: "series", series: series });
+      saveState();
+      render();
+      state.versus.phase = "cup";
+      saveState();
+      render();
+      var cupResult = runVersusWorldCup(myTeam, state.versus.opponentTeam);
+      state.versus.cupResult = cupResult;
+      state.versus.phase = "done";
+      sendVersusMessage({ type: "cup", cupResult: cupResultForPeer(cupResult) });
     } else {
       state.versus.phase = "series";
     }
@@ -3190,18 +3478,9 @@
   }
 
   function promptJoinVersusRoom() {
-    var code = window.prompt("Enter your friend's room code", "");
+    var code = window.prompt("Enter your friend's 4-digit room code", "");
     if (!code) return;
-    var trimmed = code.trim();
-    if (trimmed.indexOf("join=") !== -1) {
-      try {
-        trimmed = new URL(trimmed).searchParams.get("join") || trimmed;
-      } catch (error) {
-        var match = trimmed.match(/join=([^&]+)/);
-        if (match) trimmed = match[1];
-      }
-    }
-    joinVersusRoom(trimmed);
+    joinVersusRoom(code);
   }
 
   function leaveVersusRoom() {
