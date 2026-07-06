@@ -1238,15 +1238,22 @@
       '</div>',
       '<div class="side-body tournament-panel-body">',
       playable ? '<div class="notice">Entry: ' + escapeHtml(playable.name) + ' | ' + playable.rating.toFixed(1) + '. The cup runs automatically after you start or restart.</div>' : '<div class="empty-state">Finish your XI before entering a cup.</div>',
-      tournament ? renderTournamentStatus(tournament) : "",
-      tournament ? [
-        '<div class="tournament-panel-grid">',
-        '<section class="tournament-module tournament-module-groups"><div class="module-heading"><strong>Group Stage</strong><span>Top two advance</span></div>' + renderGroupsContent(tournament) + '</section>',
-        '<section class="tournament-module tournament-module-bracket"><div class="module-heading"><strong>Knockout Bracket</strong><span>Quarterfinals to final</span></div>' + renderBracketContent(tournament) + '</section>',
-        '</div>'
-      ].join("") : "",
+      renderTournamentCupBody(tournament),
       '</div>',
       '</aside>'
+    ].join("");
+  }
+
+  function renderTournamentCupBody(tournament, options) {
+    options = options || {};
+    if (!tournament) return "";
+    return [
+      options.notice ? '<div class="notice">' + options.notice + '</div>' : "",
+      renderTournamentStatus(tournament),
+      '<div class="tournament-panel-grid">',
+      '<section class="tournament-module tournament-module-groups"><div class="module-heading"><strong>Group Stage</strong><span>Top two advance</span></div>' + renderGroupsContent(tournament) + '</section>',
+      '<section class="tournament-module tournament-module-bracket"><div class="module-heading"><strong>Knockout Bracket</strong><span>Quarterfinals to final</span></div>' + renderBracketContent(tournament) + '</section>',
+      '</div>'
     ].join("");
   }
 
@@ -1299,7 +1306,7 @@
             var advancing = index < 2;
             var groupsComplete = tournament.stage !== "groups";
             var userEliminated = row.team.user && groupsComplete && !advancing;
-            return '<button class="group-row ' + (row.team.user ? "user-team" : "") + ' ' + (advancing ? "advancing" : "") + ' ' + (userEliminated ? "user-eliminated" : "") + '" data-inspect-tournament-team="' + row.team.tournamentId + '" title="Inspect ' + escapeHtml(row.team.name) + '"><span>' + (index + 1) + '</span><strong>' + escapeHtml(row.team.name) + '</strong><b>' + row.team.rating.toFixed(1) + '</b><em>' + row.pts + '</em><small>' + row.w + "-" + row.d + "-" + row.l + " | " + row.gf + ":" + row.ga + '</small></button>';
+            return '<button class="group-row ' + (row.team.user ? "user-team" : "") + ' ' + (row.team.isOpponent ? "opponent-team" : "") + ' ' + (advancing ? "advancing" : "") + ' ' + (userEliminated ? "user-eliminated" : "") + '" data-inspect-tournament-team="' + row.team.tournamentId + '" title="Inspect ' + escapeHtml(row.team.name) + '"><span>' + (index + 1) + '</span><strong>' + escapeHtml(row.team.name) + '</strong><b>' + row.team.rating.toFixed(1) + '</b><em>' + row.pts + '</em><small>' + row.w + "-" + row.d + "-" + row.l + " | " + row.gf + ":" + row.ga + '</small></button>';
           }).join(""),
           '</div>',
           '</div>'
@@ -1364,9 +1371,10 @@
     var home = tournamentTeam(tournament, match.homeId);
     var away = tournamentTeam(tournament, match.awayId);
     var pending = !home || !away;
-    var involvesUser = match.homeId === "user" || match.awayId === "user";
-    var userLost = involvesUser && match.played && match.winnerId !== "user";
-    var userWon = involvesUser && match.played && match.winnerId === "user";
+    var viewerId = viewerTeamId(tournament);
+    var involvesUser = match.homeId === viewerId || match.awayId === viewerId;
+    var userLost = involvesUser && match.played && match.winnerId !== viewerId;
+    var userWon = involvesUser && match.played && match.winnerId === viewerId;
     var userAdvancing = involvesUser && !userLost;
     return [
       '<div class="bracket-match ' + (match.played ? "played" : "") + ' ' + (userAdvancing ? "user-advancing" : "") + ' ' + (userWon ? "user-win" : "") + ' ' + (userLost ? "user-loss" : "") + '">',
@@ -1387,7 +1395,7 @@
     var userLost = team && team.user && match.played && match.winnerId && match.winnerId !== id;
     var userAdvancing = team && team.user && !userLost;
     return [
-      '<button class="bracket-team ' + (team && team.user ? "user-team" : "") + ' ' + (userAdvancing ? "user-advancing" : "") + ' ' + (userLost ? "user-eliminated" : "") + ' ' + (match.played && match.winnerId === id ? "winner" : "") + ' ' + (match.played && id && match.winnerId !== id ? "eliminated" : "") + '" ' + (team ? 'data-inspect-tournament-team="' + id + '" title="Inspect ' + escapeHtml(team.name) + '"' : "disabled") + '>',
+      '<button class="bracket-team ' + (team && team.user ? "user-team" : "") + ' ' + (team && team.isOpponent ? "opponent-team" : "") + ' ' + (userAdvancing ? "user-advancing" : "") + ' ' + (userLost ? "user-eliminated" : "") + ' ' + (match.played && match.winnerId === id ? "winner" : "") + ' ' + (match.played && id && match.winnerId !== id ? "eliminated" : "") + '" ' + (team ? 'data-inspect-tournament-team="' + id + '" title="Inspect ' + escapeHtml(team.name) + '"' : "disabled") + '>',
       '<span>' + escapeHtml(team ? team.name : "TBD") + '</span>',
       '<em>' + (team ? team.rating.toFixed(1) : "-") + '</em>',
       '<strong>' + escapeHtml(score) + '</strong>',
@@ -2389,7 +2397,12 @@
     tournament.championName = tournament.championId ? tournamentTeam(tournament, tournament.championId).name : "";
     tournament.stage = "complete";
     stopTournamentLive();
-    tournament.log.unshift({ stage: "Final", title: tournament.championName + " won the cup", detail: tournament.championId === "user" ? "Your XI lifted the trophy." : "Your XI fell short this run.", user: tournament.championId === "user" });
+    var viewerId = viewerTeamId(tournament);
+    tournament.log.unshift({ stage: "Final", title: tournament.championName + " won the cup", detail: tournament.championId === viewerId ? "Your XI lifted the trophy." : "Your XI fell short this run.", user: tournament.championId === viewerId });
+  }
+
+  function viewerTeamId(tournament) {
+    return (tournament && tournament.viewerTeamId) || "user";
   }
 
   function groupTable(tournament, group) {
@@ -2442,8 +2455,9 @@
   function tournamentUserProgress(tournament) {
     var context = userGroupContext(tournament);
     var userState = tournamentUserState(tournament);
+    var viewerId = viewerTeamId(tournament);
     var summary = "Your XI is waiting for the tournament draw.";
-    if (tournament.championId === "user") {
+    if (tournament.championId === viewerId) {
       summary = "Your XI won the final and lifted the cup.";
     } else if (tournament.stage === "complete") {
       summary = "Your XI is out. Champion: " + (tournament.championName || "TBD") + ".";
@@ -2468,11 +2482,12 @@
   }
 
   function userGroupContext(tournament) {
-    var group = tournament.groups.find(function (item) { return item.teamIds.indexOf("user") !== -1; });
+    var viewerId = viewerTeamId(tournament);
+    var group = tournament.groups.find(function (item) { return item.teamIds.indexOf(viewerId) !== -1; });
     var table = group ? groupTable(tournament, group) : [];
     var rank = table.findIndex(function (row) { return row.team.user; });
     var matches = group ? tournament.groupMatches.filter(function (match) {
-      return match.group === group.name && (match.homeId === "user" || match.awayId === "user");
+      return match.group === group.name && (match.homeId === viewerId || match.awayId === viewerId);
     }) : [];
     return {
       group: group,
@@ -2490,9 +2505,10 @@
       return userMatchPathItem(tournament, match);
     });
     var hasBracketMatch = false;
+    var viewerId = viewerTeamId(tournament);
     tournament.bracketRounds.forEach(function (round) {
       round.matches.forEach(function (match) {
-        if (match.homeId !== "user" && match.awayId !== "user") return;
+        if (match.homeId !== viewerId && match.awayId !== viewerId) return;
         hasBracketMatch = true;
         items.push(userMatchPathItem(tournament, match));
       });
@@ -2513,33 +2529,35 @@
     return {
       label: match.stage,
       detail: userScoreText(tournament, match),
-      status: match.winnerId === "user" ? "win" : "loss"
+      status: match.winnerId === viewerTeamId(tournament) ? "win" : "loss"
     };
   }
 
   function userScoreText(tournament, match) {
     var opponent = matchOpponentName(tournament, match);
     var score = match.score.split("-");
-    var userHome = match.homeId === "user";
+    var userHome = match.homeId === viewerTeamId(tournament);
     var userGoals = userHome ? score[0] : score[1];
     var opponentGoals = userHome ? score[1] : score[0];
     return "vs " + opponent + " " + userGoals + "-" + opponentGoals;
   }
 
   function matchOpponentName(tournament, match) {
-    var opponentId = match.homeId === "user" ? match.awayId : match.homeId;
+    var viewerId = viewerTeamId(tournament);
+    var opponentId = match.homeId === viewerId ? match.awayId : match.homeId;
     var opponent = tournamentTeam(tournament, opponentId);
     return opponent ? opponent.name : "TBD";
   }
 
   function nextUserTournamentMatch(tournament) {
+    var viewerId = viewerTeamId(tournament);
     var groupMatch = tournament.groupMatches.find(function (match) {
-      return !match.played && (match.homeId === "user" || match.awayId === "user");
+      return !match.played && (match.homeId === viewerId || match.awayId === viewerId);
     });
     if (groupMatch) return groupMatch;
     for (var i = 0; i < tournament.bracketRounds.length; i += 1) {
       var match = tournament.bracketRounds[i].matches.find(function (item) {
-        return !item.played && (item.homeId === "user" || item.awayId === "user");
+        return !item.played && (item.homeId === viewerId || item.awayId === viewerId);
       });
       if (match) return match;
     }
@@ -2547,20 +2565,22 @@
   }
 
   function lastUserBracketMatch(tournament) {
+    var viewerId = viewerTeamId(tournament);
     var lastMatch = null;
     tournament.bracketRounds.forEach(function (round) {
       round.matches.forEach(function (match) {
-        if (match.played && (match.homeId === "user" || match.awayId === "user")) lastMatch = match;
+        if (match.played && (match.homeId === viewerId || match.awayId === viewerId)) lastMatch = match;
       });
     });
-    return lastMatch && lastMatch.winnerId !== "user" ? lastMatch : null;
+    return lastMatch && lastMatch.winnerId !== viewerId ? lastMatch : null;
   }
 
   function tournamentUserState(tournament) {
-    if (tournament.championId === "user") return { label: "Champion", tone: "gold" };
+    var viewerId = viewerTeamId(tournament);
+    if (tournament.championId === viewerId) return { label: "Champion", tone: "gold" };
     if (tournament.stage === "complete") return { label: "Out", tone: "red" };
     if (tournament.stage === "groups") {
-      var group = tournament.groups.find(function (item) { return item.teamIds.indexOf("user") !== -1; });
+      var group = tournament.groups.find(function (item) { return item.teamIds.indexOf(viewerId) !== -1; });
       var table = group ? groupTable(tournament, group) : [];
       var rank = table.findIndex(function (row) { return row.team.user; });
       return { label: rank >= 0 ? "#" + (rank + 1) + " group" : "Groups", tone: rank >= 0 && rank < 2 ? "green" : "" };
@@ -2570,15 +2590,15 @@
     var lostKnockoutMatch = false;
     tournament.bracketRounds.forEach(function (round) {
       round.matches.forEach(function (match) {
-        var involvesUser = match.homeId === "user" || match.awayId === "user";
+        var involvesUser = match.homeId === viewerId || match.awayId === viewerId;
         if (!involvesUser) return;
         hasBracketPath = true;
         if (!match.played) hasPendingMatch = true;
-        if (match.played && match.winnerId !== "user") lostKnockoutMatch = true;
+        if (match.played && match.winnerId !== viewerId) lostKnockoutMatch = true;
       });
     });
     var alive = hasBracketPath && !lostKnockoutMatch && (hasPendingMatch || tournament.bracketRounds.some(function (round) {
-      return round.matches.some(function (match) { return match.played && match.winnerId === "user"; });
+      return round.matches.some(function (match) { return match.played && match.winnerId === viewerId; });
     }));
     return { label: alive ? "Alive" : "Out", tone: alive ? "green" : "red" };
   }
@@ -2600,12 +2620,21 @@
 
   function scheduleTournamentStep() {
     stopTournamentLive();
-    if (!state.tournament || state.tournament.stage === "complete") return;
+    if (!state.tournament || state.tournament.stage === "complete") {
+      if (state.tournament && state.tournament.stage === "complete" && state.versus && state.versus.phase === "cup") {
+        finishVersusWorldCup();
+      }
+      return;
+    }
     tournamentTimer = window.setTimeout(function () {
       tournamentTimer = null;
       advanceTournamentStep();
-      saveState();
-      scheduleTournamentStep();
+      if (state.tournament && state.tournament.stage === "complete" && state.versus && state.versus.phase === "cup") {
+        finishVersusWorldCup();
+      } else {
+        saveState();
+        scheduleTournamentStep();
+      }
       render();
     }, 520);
   }
@@ -2816,10 +2845,20 @@
 
   function renderVersusView(rating, teamFull) {
     if (!state.versus.connected) return renderVersusLobby();
+    var rightPanel;
+    if (state.versus.phase === "done" && state.versus.cupResult) {
+      rightPanel = renderVersusResultsPanel();
+    } else if (state.versus.phase === "cup" && state.tournament) {
+      rightPanel = renderVersusTournamentPanel();
+    } else if (state.versus.phase === "series" || state.versus.series) {
+      rightPanel = renderVersusSeriesPanel();
+    } else {
+      rightPanel = renderVersusDraftPanel(teamFull);
+    }
     return [
       '<main class="main-grid versus-grid">',
       renderFieldPanel(rating),
-      state.versus.phase === "done" && state.versus.cupResult ? renderVersusFinalPanel() : state.versus.phase === "series" || state.versus.phase === "cup" || state.versus.series ? renderVersusSeriesPanel() : renderVersusDraftPanel(teamFull),
+      rightPanel,
       '</main>',
       '<section class="bottom-grid">',
       renderVersusStatusPanel(),
@@ -2928,43 +2967,55 @@
         return '<div class="versus-match-row ' + (userWon ? "win" : "loss") + '"><strong>Game ' + match.n + '</strong><span>' + escapeHtml(match.home) + ' ' + escapeHtml(match.score) + ' ' + escapeHtml(match.away) + '</span><em>' + (userWon ? "W" : "L") + (userHome ? " · home" : " · away") + '</em></div>';
       }).join(""),
       '</div>',
-      versus.phase === "cup" ? '<div class="notice versus-cup-wait">Both squads are locked. Running the random World Cup draw now…</div>' : "",
-      versus.phase === "done" && !versus.cupResult ? '<div class="actions-row"><button class="primary-button" data-action="versus-rematch">Draft Rematch</button><button class="ghost-button" data-action="leave-versus">Leave Room</button></div>' : "",
+      versus.phase === "cup" && !state.tournament ? '<div class="notice versus-cup-wait">Both squads are locked. Running the random World Cup draw now…</div>' : "",
       '</div>',
       '</aside>'
     ].join("");
   }
 
-  function renderVersusFinalPanel() {
+  function renderVersusBo5Summary() {
     var versus = state.versus;
     var series = versus.series;
-    var cupResult = versus.cupResult;
+    if (!series) return "";
     var myTeam = snapshotTeam(state, state.teamName);
-    var myCupId = myVersusCupTeamId();
-    var myCupRow = cupResult.players.find(function (row) { return row.teamId === myCupId; }) || cupResult.players[0];
-    var oppCupRow = cupResult.players.find(function (row) { return row.teamId === opponentVersusCupTeamId(); }) || cupResult.players[1];
-    var myIsA = series && series.teamA === myTeam.name;
-    var myWins = series ? (myIsA ? series.winsA : series.winsB) : 0;
-    var oppWins = series ? (myIsA ? series.winsB : series.winsA) : 0;
-    var wonBo5 = series && series.winnerName === myTeam.name;
+    var myIsA = series.teamA === myTeam.name;
+    var myWins = myIsA ? series.winsA : series.winsB;
+    var oppWins = myIsA ? series.winsB : series.winsA;
+    var wonBo5 = series.winnerName === myTeam.name;
     return [
-      '<aside class="panel draft-panel versus-final-panel">',
-      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>Final Standings</h2><small>Bo5 result and World Cup finishes</small></div></div></div>',
-      '<div class="draft-body">',
+      '<div class="versus-bo5-summary">',
       '<div class="section-label">Head-to-head Bo5</div>',
       '<div class="versus-scoreline">',
       metric("You", String(myWins), wonBo5 ? "gold" : ""),
       metric("Opponent", String(oppWins), !wonBo5 ? "red" : ""),
       metric("Bo5", wonBo5 ? "Win" : "Loss", wonBo5 ? "gold" : "red"),
       '</div>',
-      series ? '<div class="versus-match-list">' + series.matches.map(function (match) {
-        var userHome = match.home === myTeam.name;
-        var userWon = match.winnerName === myTeam.name;
-        return '<div class="versus-match-row ' + (userWon ? "win" : "loss") + '"><strong>Game ' + match.n + '</strong><span>' + escapeHtml(match.home) + ' ' + escapeHtml(match.score) + ' ' + escapeHtml(match.away) + '</span><em>' + (userWon ? "W" : "L") + '</em></div>';
-      }).join("") + '</div>' : "",
-      '<div class="section-label">World Cup draw</div>',
-      '<div class="notice">Champion: <strong>' + escapeHtml(cupResult.championName || "TBD") + '</strong>. Both XIs were randomly placed into the 16-team field with 14 AI sides.</div>',
-      '<div class="versus-standings">',
+      '</div>'
+    ].join("");
+  }
+
+  function renderVersusTournamentPanel() {
+    var tournament = state.tournament;
+    return [
+      '<aside class="panel tournament-panel versus-tournament-panel">',
+      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>World Cup Draw</h2><small>Both XIs were randomly placed into the 16-team field</small></div></div></div>',
+      '<div class="side-body tournament-panel-body">',
+      renderVersusBo5Summary(),
+      renderTournamentCupBody(tournament, {
+        notice: "Live group tables and knockout bracket, same view as solo cup."
+      }),
+      '</div>',
+      '</aside>'
+    ].join("");
+  }
+
+  function renderVersusCupStandings(cupResult) {
+    if (!cupResult || !cupResult.players || !cupResult.players.length) return "";
+    var myCupId = myVersusCupTeamId();
+    return [
+      '<div class="section-label">Final standings · all 16 teams</div>',
+      '<div class="notice">Champion: <strong>' + escapeHtml(cupResult.championName || "TBD") + '</strong></div>',
+      '<div class="versus-standings versus-standings-full">',
       cupResult.players.map(function (row, index) {
         var isMe = row.teamId === myCupId;
         var isOpp = row.teamId === opponentVersusCupTeamId();
@@ -2974,11 +3025,21 @@
         '<em>' + escapeHtml(row.cupLabel) + '</em>',
         '</div>';
       }).join(""),
-      '</div>',
-      '<div class="versus-final-summary">',
-      '<div class="notice"><strong>Your cup run:</strong> ' + escapeHtml(myCupRow.cupDetail) + '</div>',
-      '<div class="notice"><strong>Opponent cup run:</strong> ' + escapeHtml(oppCupRow.cupDetail) + '</div>',
-      '</div>',
+      '</div>'
+    ].join("");
+  }
+
+  function renderVersusResultsPanel() {
+    var versus = state.versus;
+    var cupResult = versus.cupResult;
+    var tournament = state.tournament;
+    return [
+      '<aside class="panel tournament-panel versus-results-panel">',
+      '<div class="panel-header"><div class="panel-title"><span class="status-dot"></span><div><h2>Final Results</h2><small>Bo5, World Cup groups, bracket, and full standings</small></div></div></div>',
+      '<div class="side-body tournament-panel-body">',
+      renderVersusBo5Summary(),
+      tournament ? renderTournamentCupBody(tournament, { notice: "Final group tables and knockout bracket." }) : "",
+      renderVersusCupStandings(cupResult),
       '<div class="actions-row"><button class="primary-button" data-action="versus-rematch">Draft Rematch</button><button class="ghost-button" data-action="leave-versus">Leave Room</button></div>',
       '</div>',
       '</aside>'
@@ -3200,14 +3261,21 @@
     }
     if (payload.type === "series") {
       state.versus.series = payload.series || null;
-      state.versus.phase = "cup";
+      state.versus.phase = "series";
+      saveState();
+      render();
+      return;
+    }
+    if (payload.type === "cup-start") {
+      if (payload.teamA && payload.teamB) startVersusWorldCup(payload.teamA, payload.teamB);
       saveState();
       render();
       return;
     }
     if (payload.type === "cup") {
-      state.versus.cupResult = payload.cupResult || null;
+      state.versus.cupResult = payload.cupResult || state.versus.cupResult || null;
       state.versus.phase = "done";
+      stopTournamentLive();
       saveState();
       render();
       return;
@@ -3286,7 +3354,7 @@
     return seededSample(sorted, count, rng);
   }
 
-  function runVersusWorldCup(teamA, teamB) {
+  function createVersusWorldCupTournament(teamA, teamB) {
     var seed = hashString(String(state.versus.roomId) + "|cup|" + teamA.id + "|" + teamB.id);
     var rng = makeSeededRng(seed);
     var playerA = cloneTournamentTeam(teamA, false);
@@ -3306,9 +3374,44 @@
       detail: teamA.name + " and " + teamB.name + " were randomly placed into the groups."
     });
     tournament._rng = rng;
-    runTournamentToCompletion(tournament);
-    delete tournament._rng;
-    return buildVersusCupResult(tournament);
+    tournament.viewerTeamId = myVersusCupTeamId();
+    tournament.opponentTeamId = opponentVersusCupTeamId();
+    tournament.versusCup = true;
+    markVersusTournamentTeams(tournament);
+    return tournament;
+  }
+
+  function markVersusTournamentTeams(tournament) {
+    var viewerId = tournament.viewerTeamId;
+    var opponentId = tournament.opponentTeamId;
+    tournament.teams.forEach(function (team) {
+      team.user = team.tournamentId === viewerId;
+      team.isOpponent = team.tournamentId === opponentId;
+    });
+    return tournament;
+  }
+
+  function startVersusWorldCup(teamA, teamB) {
+    stopTournamentLive();
+    state.tournament = createVersusWorldCupTournament(teamA, teamB);
+    state.versus.phase = "cup";
+    saveState();
+    scheduleTournamentStep();
+    render();
+  }
+
+  function finishVersusWorldCup() {
+    if (!state.tournament || !state.versus || state.versus.phase !== "cup") return;
+    stopTournamentLive();
+    if (state.tournament._rng) delete state.tournament._rng;
+    var cupResult = buildVersusCupResult(state.tournament);
+    state.versus.cupResult = cupResult;
+    state.versus.phase = "done";
+    if (state.versus.role === "host") {
+      sendVersusMessage({ type: "cup", cupResult: cupResultForPeer(cupResult) });
+    }
+    saveState();
+    render();
   }
 
   function getTeamCupFinish(tournament, teamId) {
@@ -3350,23 +3453,24 @@
   }
 
   function buildVersusCupResult(tournament) {
-    var playerRows = ["player-a", "player-b"].map(function (teamId) {
-      var team = tournamentTeam(tournament, teamId);
-      var finish = getTeamCupFinish(tournament, teamId);
+    var playerRows = tournament.teams.map(function (team) {
+      var finish = getTeamCupFinish(tournament, team.tournamentId);
       return {
-        teamId: teamId,
-        name: team ? team.name : teamId,
-        rating: team ? team.rating : 0,
+        teamId: team.tournamentId,
+        name: team.name,
+        rating: team.rating,
         groupName: finish.groupName,
         groupRank: finish.groupRank,
         cupLabel: finish.label,
         cupDetail: finish.detail,
         cupScore: finish.score,
         tone: finish.tone,
-        champion: tournament.championId === teamId
+        champion: tournament.championId === team.tournamentId,
+        isViewer: team.tournamentId === tournament.viewerTeamId,
+        isOpponent: team.tournamentId === tournament.opponentTeamId
       };
     });
-    playerRows.sort(function (a, b) { return b.cupScore - a.cupScore || b.rating - a.rating; });
+    playerRows.sort(function (a, b) { return b.cupScore - a.cupScore || b.rating - a.rating || a.name.localeCompare(b.name); });
     return {
       championId: tournament.championId,
       championName: tournament.championName,
@@ -3384,15 +3488,8 @@
       state.versus.series = series;
       state.versus.phase = "series";
       sendVersusMessage({ type: "series", series: series });
-      saveState();
-      render();
-      state.versus.phase = "cup";
-      saveState();
-      render();
-      var cupResult = runVersusWorldCup(myTeam, state.versus.opponentTeam);
-      state.versus.cupResult = cupResult;
-      state.versus.phase = "done";
-      sendVersusMessage({ type: "cup", cupResult: cupResultForPeer(cupResult) });
+      sendVersusMessage({ type: "cup-start", teamA: myTeam, teamB: state.versus.opponentTeam });
+      startVersusWorldCup(myTeam, state.versus.opponentTeam);
     } else {
       state.versus.phase = "series";
     }

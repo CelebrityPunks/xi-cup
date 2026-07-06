@@ -1066,6 +1066,31 @@ button:disabled {
   color: #edf8e8;
 }
 
+.group-row.opponent-team {
+  border-color: rgba(255, 120, 120, 0.34);
+  background: rgba(255, 86, 86, 0.08);
+}
+
+.bracket-team.opponent-team {
+  border-color: rgba(255, 120, 120, 0.34);
+  background: rgba(255, 86, 86, 0.08);
+}
+
+.versus-bo5-summary {
+  margin-bottom: 14px;
+}
+
+.versus-tournament-panel,
+.versus-results-panel {
+  min-height: 0;
+}
+
+.versus-standings-full {
+  margin-top: 14px;
+  max-height: 360px;
+  overflow: auto;
+}
+
 .group-row.user-team.user-eliminated {
   border-color: rgba(255, 109, 98, 0.92);
   background: rgba(78, 22, 18, 0.48);
