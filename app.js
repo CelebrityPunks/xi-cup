@@ -3267,7 +3267,7 @@
       return;
     }
     if (payload.type === "cup-start") {
-      if (payload.teamA && payload.teamB) startVersusWorldCup(payload.teamA, payload.teamB);
+      if (payload.draw) applyVersusCupDraw(payload.draw);
       saveState();
       render();
       return;
@@ -3354,31 +3354,100 @@
     return seededSample(sorted, count, rng);
   }
 
-  function createVersusWorldCupTournament(teamA, teamB) {
-    var seed = hashString(String(state.versus.roomId) + "|cup|" + teamA.id + "|" + teamB.id);
-    var rng = makeSeededRng(seed);
+  function versusCupSeedKey(teamA, teamB, suffix) {
+    return hashString(String(state.versus.roomId) + "|" + suffix + "|" + teamA.name + "|" + teamB.name);
+  }
+
+  function serializeTournamentTeam(team) {
+    return {
+      id: team.id,
+      tournamentId: team.tournamentId,
+      name: team.name,
+      owner: team.owner,
+      formation: team.formation,
+      manager: team.manager,
+      rating: team.rating,
+      experience: team.experience || 0,
+      record: team.record || { w: 0, l: 0 },
+      players: team.players || [],
+      bonuses: team.bonuses || [],
+      user: Boolean(team.user),
+      isOpponent: Boolean(team.isOpponent)
+    };
+  }
+
+  function serializeVersusCupDraw(tournament) {
+    return {
+      seed: tournament._cupSeed,
+      id: tournament.id,
+      stage: tournament.stage,
+      played: tournament.played,
+      totalMatches: tournament.totalMatches,
+      teams: tournament.teams.map(serializeTournamentTeam),
+      groups: tournament.groups,
+      groupMatches: tournament.groupMatches,
+      bracketRounds: tournament.bracketRounds,
+      activeRoundIndex: tournament.activeRoundIndex,
+      championId: tournament.championId,
+      championName: tournament.championName,
+      log: tournament.log || []
+    };
+  }
+
+  function buildVersusWorldCupTournament(teamA, teamB) {
+    var drawSeed = versusCupSeedKey(teamA, teamB, "draw");
+    var matchSeed = versusCupSeedKey(teamA, teamB, "matches");
+    var drawRng = makeSeededRng(drawSeed);
     var playerA = cloneTournamentTeam(teamA, false);
     playerA.tournamentId = "player-a";
     playerA.name = teamA.name;
     var playerB = cloneTournamentTeam(teamB, false);
     playerB.tournamentId = "player-b";
     playerB.name = teamB.name;
-    var botTeams = pickSeededTournamentBots(14, rng).map(function (bot, index) {
+    var botTeams = pickSeededTournamentBots(14, drawRng).map(function (bot, index) {
       var entry = cloneTournamentTeam(bot, false);
       entry.tournamentId = "bot-" + (index + 1);
       return entry;
     });
-    var ordered = seededSample([playerA, playerB].concat(botTeams), 16, rng);
+    var ordered = seededSample([playerA, playerB].concat(botTeams), 16, drawRng);
     var tournament = createTournamentFromTeams(ordered, {
       title: "World Cup draw",
       detail: teamA.name + " and " + teamB.name + " were randomly placed into the groups."
     });
-    tournament._rng = rng;
+    tournament._cupSeed = matchSeed;
+    tournament._rng = makeSeededRng(matchSeed);
+    tournament.versusCup = true;
+    return tournament;
+  }
+
+  function applyVersusCupDraw(payload) {
+    if (!payload) return;
+    stopTournamentLive();
+    var tournament = {
+      id: payload.id,
+      stage: payload.stage || "groups",
+      played: payload.played || 0,
+      totalMatches: payload.totalMatches || 31,
+      teams: payload.teams || [],
+      groups: payload.groups || [],
+      groupMatches: payload.groupMatches || [],
+      bracketRounds: payload.bracketRounds || buildEmptyBracket(),
+      activeRoundIndex: payload.activeRoundIndex || 0,
+      championId: payload.championId || null,
+      championName: payload.championName || "",
+      log: payload.log || []
+    };
+    tournament._cupSeed = payload.seed;
+    tournament._rng = makeSeededRng(payload.seed);
     tournament.viewerTeamId = myVersusCupTeamId();
     tournament.opponentTeamId = opponentVersusCupTeamId();
     tournament.versusCup = true;
     markVersusTournamentTeams(tournament);
-    return tournament;
+    state.tournament = tournament;
+    state.versus.phase = "cup";
+    saveState();
+    scheduleTournamentStep();
+    render();
   }
 
   function markVersusTournamentTeams(tournament) {
@@ -3389,15 +3458,6 @@
       team.isOpponent = team.tournamentId === opponentId;
     });
     return tournament;
-  }
-
-  function startVersusWorldCup(teamA, teamB) {
-    stopTournamentLive();
-    state.tournament = createVersusWorldCupTournament(teamA, teamB);
-    state.versus.phase = "cup";
-    saveState();
-    scheduleTournamentStep();
-    render();
   }
 
   function finishVersusWorldCup() {
@@ -3485,11 +3545,13 @@
     var myTeam = snapshotTeam(state, state.teamName);
     if (state.versus.role === "host") {
       var series = runBo5Series(myTeam, state.versus.opponentTeam);
+      var tournament = buildVersusWorldCupTournament(myTeam, state.versus.opponentTeam);
+      var drawPayload = serializeVersusCupDraw(tournament);
       state.versus.series = series;
       state.versus.phase = "series";
       sendVersusMessage({ type: "series", series: series });
-      sendVersusMessage({ type: "cup-start", teamA: myTeam, teamB: state.versus.opponentTeam });
-      startVersusWorldCup(myTeam, state.versus.opponentTeam);
+      sendVersusMessage({ type: "cup-start", draw: drawPayload });
+      applyVersusCupDraw(drawPayload);
     } else {
       state.versus.phase = "series";
     }
@@ -3498,7 +3560,7 @@
   }
 
   function runBo5Series(teamA, teamB) {
-    var seed = hashString(String(state.versus.roomId) + "|" + teamA.id + "|" + teamB.id);
+    var seed = versusCupSeedKey(teamA, teamB, "bo5");
     var rng = makeSeededRng(seed);
     var matches = [];
     var winsA = 0;
