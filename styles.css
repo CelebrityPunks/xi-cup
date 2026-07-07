@@ -3305,6 +3305,7 @@ body::before {
   display: flex !important;
   flex-direction: column !important;
   padding: 12px !important;
+  background: transparent !important;
 }
 
 .player-card .card-art {
@@ -3316,7 +3317,12 @@ body::before {
   background: none !important;
   border-radius: 0 !important;
   margin: 0 !important;
-  z-index: -2 !important;
+  z-index: 0 !important;
+}
+
+.player-card .card-art::before,
+.player-card .card-art::after {
+  display: none !important;
 }
 
 .player-card .card-art img {
@@ -3324,6 +3330,7 @@ body::before {
   height: 100% !important;
   object-fit: cover !important;
   object-position: center 15% !important;
+  opacity: 1 !important;
 }
 
 .player-card::after {
@@ -3331,15 +3338,30 @@ body::before {
   position: absolute !important;
   inset: 0 !important;
   border-radius: 8px !important;
-  background: linear-gradient(180deg, rgba(2, 8, 14, 0.15) 0%, rgba(2, 8, 14, 0.45) 45%, rgba(2, 8, 14, 0.96) 95%) !important;
+  background: linear-gradient(180deg, rgba(2, 8, 14, 0.1) 0%, rgba(2, 8, 14, 0.35) 40%, rgba(2, 8, 14, 0.92) 80%) !important;
   opacity: 1 !important;
-  z-index: -1 !important;
+  z-index: 1 !important;
   pointer-events: none !important;
 }
 
-.player-card .card-top {
-  margin-bottom: auto !important;
+.player-card > * {
+  position: relative !important;
+  z-index: 2 !important;
 }
+
+.player-card .card-art {
+  z-index: 0 !important;
+}
+
+/* Push tags and footer to the bottom of the card */
+.player-card .tag-row:first-of-type {
+  margin-top: auto !important;
+}
+
+.player-card .card-top {
+  margin-bottom: 0 !important;
+}
+
 
 /* Mobile & Small Screen Optimizations */
 @media (max-width: 760px) {
