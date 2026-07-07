@@ -3291,4 +3291,178 @@ body::before {
   .formation-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Place the active draft panel above the pitch in stacked layouts */
+  .draft-panel {
+    order: -1;
+  }
 }
+
+/* Mobile & Small Screen Optimizations */
+@media (max-width: 760px) {
+  /* Prevent cards from overlapping/clipping by scaling slots dynamically */
+  .slot {
+    width: clamp(54px, 15vw, 72px) !important;
+    min-height: unset !important;
+    aspect-ratio: 0.82 !important;
+    padding: 3px !important;
+  }
+  
+  .player-mini,
+  .empty-slot {
+    min-height: unset !important;
+    height: 100% !important;
+  }
+
+  .pitch-card-field {
+    min-height: unset !important;
+    height: 100% !important;
+    padding: 3px !important;
+  }
+
+  /* Responsive pitch card typography and photos */
+  .pitch-card-pos {
+    font-size: clamp(8px, 2.2vw, 10px) !important;
+  }
+  
+  .pitch-card-rating {
+    font-size: clamp(10px, 3vw, 13px) !important;
+  }
+  
+  .pitch-card-name {
+    font-size: clamp(8px, 2.2vw, 9.5px) !important;
+    line-height: 1 !important;
+    min-height: 2em !important;
+    margin-top: 2px !important;
+  }
+  
+  .pitch-card-photo {
+    aspect-ratio: 0.9 !important;
+  }
+  
+  .pitch-card-foot {
+    font-size: clamp(7px, 2vw, 8.5px) !important;
+    gap: 2px !important;
+  }
+
+  /* Bench slots responsive scaling */
+  .bench-slot,
+  .bench-slot.empty-bench {
+    min-height: unset !important;
+    aspect-ratio: 0.82 !important;
+    padding: 3px !important;
+  }
+  
+  .bench-slot .player-mini {
+    min-height: unset !important;
+    height: 100% !important;
+  }
+
+  /* Smooth horizontal scrolling for mode tabs */
+  .mode-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-button {
+    flex: 0 0 auto !important;
+  }
+
+  /* Horizontal pack scroll for drafted player choices */
+  .player-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding: 4px 4px 12px 4px !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  .player-card {
+    flex: 0 0 160px !important;
+    scroll-snap-align: start !important;
+    min-height: 220px !important;
+    margin: 0 !important;
+  }
+
+  /* Custom scrollbar for horizontal pack choice scrolling */
+  .player-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+  .player-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 3px;
+  }
+  .player-grid::-webkit-scrollbar-thumb {
+    background: rgba(38, 241, 223, 0.3);
+    border-radius: 3px;
+  }
+  .player-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(38, 241, 223, 0.5);
+  }
+
+  /* Modal responsive constraint */
+  .modal {
+    max-height: 88vh !important;
+    width: 96% !important;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 600px) {
+  /* 1v1 lobby list grid layouts collapse to single column */
+  .versus-lobby-grid,
+  .versus-status-grid,
+  .versus-ready-grid,
+  .versus-scoreline {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .online-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra tiny screen adjustments (e.g. iPhone SE) */
+  .slot {
+    width: clamp(48px, 14vw, 62px) !important;
+  }
+  
+  .pitch {
+    min-height: 400px !important;
+  }
+  
+  .bench-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+  
+  .bench-slot,
+  .bench-slot.empty-bench {
+    padding: 2px !important;
+  }
+
+  .player-card {
+    flex: 0 0 145px !important;
+    padding: 8px !important;
+    min-height: 200px !important;
+  }
+  .card-art {
+    height: 76px !important;
+  }
+  .card-name {
+    font-size: 12px !important;
+  }
+  .tag {
+    font-size: 9px !important;
+    padding: 2px 4px !important;
+  }
+}
+
