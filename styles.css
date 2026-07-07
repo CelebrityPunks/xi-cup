@@ -3354,12 +3354,8 @@ body::before {
 }
 
 /* Push tags and footer to the bottom of the card */
-.player-card .tag-row:first-of-type {
-  margin-top: auto !important;
-}
-
 .player-card .card-top {
-  margin-bottom: 0 !important;
+  margin-bottom: auto !important;
 }
 
 
