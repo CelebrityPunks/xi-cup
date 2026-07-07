@@ -3298,6 +3298,49 @@ body::before {
   }
 }
 
+/* Full-Card Player Photo Background Redesign */
+.player-card {
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 12px !important;
+}
+
+.player-card .card-art {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  z-index: -2 !important;
+}
+
+.player-card .card-art img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 15% !important;
+}
+
+.player-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(2, 8, 14, 0.15) 0%, rgba(2, 8, 14, 0.45) 45%, rgba(2, 8, 14, 0.96) 95%) !important;
+  opacity: 1 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+}
+
+.player-card .card-top {
+  margin-bottom: auto !important;
+}
+
 /* Mobile & Small Screen Optimizations */
 @media (max-width: 760px) {
   /* Prevent cards from overlapping/clipping by scaling slots dynamically */
@@ -3383,11 +3426,55 @@ body::before {
     box-sizing: border-box;
   }
   
+  /* Redesigned smaller player card for mobile */
   .player-card {
-    flex: 0 0 160px !important;
+    flex: 0 0 135px !important;
     scroll-snap-align: start !important;
-    min-height: 220px !important;
+    min-height: 190px !important;
     margin: 0 !important;
+    padding: 8px !important;
+  }
+  
+  .player-card .card-position,
+  .player-card .card-rating {
+    font-size: 11px !important;
+  }
+  .player-card .card-name {
+    font-size: 11px !important;
+    line-height: 1.1 !important;
+    -webkit-line-clamp: 1 !important;
+  }
+  .player-card .tag-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 3px !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+  .player-card .tag {
+    font-size: 8px !important;
+    padding: 1px 3px !important;
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+  .player-card .card-foot {
+    font-size: 8px !important;
+  }
+
+  /* Shrink mobile reroll button */
+  .reroll-button {
+    min-width: unset !important;
+    width: auto !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    min-height: 32px !important;
+  }
+  .reroll-button .button-glyph {
+    width: 12px !important;
+    height: 12px !important;
+    margin-right: 5px !important;
+    vertical-align: -2px !important;
   }
 
   /* Custom scrollbar for horizontal pack choice scrolling */
@@ -3449,20 +3536,31 @@ body::before {
     padding: 2px !important;
   }
 
+  /* Redesigned extra-small player card for mobile */
   .player-card {
-    flex: 0 0 145px !important;
-    padding: 8px !important;
-    min-height: 200px !important;
+    flex: 0 0 115px !important;
+    padding: 6px !important;
+    min-height: 165px !important;
   }
-  .card-art {
-    height: 76px !important;
+  
+  .player-card .card-position,
+  .player-card .card-rating {
+    font-size: 9.5px !important;
   }
-  .card-name {
-    font-size: 12px !important;
+  
+  .player-card .card-name {
+    font-size: 9.5px !important;
+    line-height: 1 !important;
+    min-height: 1.1em !important;
   }
-  .tag {
-    font-size: 9px !important;
-    padding: 2px 4px !important;
+  
+  .player-card .tag {
+    font-size: 7.5px !important;
+    padding: 1px 2px !important;
+  }
+  
+  .player-card .card-foot {
+    font-size: 7.5px !important;
   }
 }
 
