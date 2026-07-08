@@ -377,7 +377,7 @@
   render();
 
   function p(id, name, rating, primary, secondary, nation, clubs, eras, tags, tier) {
-    return { id: id, name: name, peakRating: rating, rating: rebalanceRating(rating, tier), primary: primary, secondary: secondary, nation: nation, clubs: clubs, eras: eras, tags: tags, tier: tier };
+    return { id: id, name: name, rating: rebalanceRating(rating, tier), primary: primary, secondary: secondary, nation: nation, clubs: clubs, eras: eras, tags: tags, tier: tier };
   }
 
   function rebalanceRating(rawRating, tier) {
@@ -787,7 +787,6 @@
       '<button class="danger-button" data-action="new-draft">New Draft</button>',
       '</div>',
       '</div>',
-      renderBenchRow(),
       '<div class="placement-hint">Drag or tap to move players between bench and pitch.</div>',
       '<div class="pitch-wrap">',
       '<div class="pitch">',
@@ -795,6 +794,7 @@
       state.slots.map(renderSlot).join(""),
       '</div>',
       '</div>',
+      renderBenchRow(),
       renderRatingSheet(rating, fieldComplete),
       '</section>'
     ].join("");
@@ -979,17 +979,20 @@
 
   function renderPlayerCard(player, packName) {
     if (!player) return "";
+    var secondaryTags = player.secondary.length ? '<div class="tag-row secondary-tags">' + player.secondary.map(function (pos) { return '<span class="tag">' + pos + '</span>'; }).join("") + '</div>' : "";
     return [
       '<button class="player-card ' + (player.tier === "S" ? "signature" : "") + '" data-pick-player="' + player.id + '">',
       '<div class="card-art"><img data-player-image data-image-candidates="' + escapeHtml(JSON.stringify(playerImageCandidates(player, packName))) + '" alt=""></div>',
       '<div class="card-top"><div><div class="card-position">' + player.primary + '</div><div class="card-name">' + escapeHtml(player.name) + '</div></div><div class="card-rating">' + player.rating + '</div></div>',
+      '<div class="card-bottom">',
       '<div class="tag-row">',
       '<span class="tag">' + escapeHtml(player.nation) + '</span>',
       '<span class="tag">' + escapeHtml(player.clubs[0]) + '</span>',
       '<span class="tag">' + (player.tier === "S" ? "Signature" : "Tier " + player.tier) + '</span>',
       '</div>',
-      '<div class="tag-row">' + player.secondary.map(function (pos) { return '<span class="tag">' + pos + '</span>'; }).join("") + '</div>',
-      '<div class="card-foot">' + escapeHtml(player.eras[0] || "Peak") + ' | Peak ' + player.peakRating + '</div>',
+      secondaryTags,
+      '<div class="card-foot">' + escapeHtml(player.eras[0] || "Era") + '</div>',
+      '</div>',
       '</button>'
     ].join("");
   }
@@ -2140,7 +2143,7 @@
       record: draft.record || { w: 0, l: 0 },
       players: draft.slots.map(function (slot) {
         var player = playerById(slot.playerId);
-        return { id: player.id, name: player.name, slot: slot.pos, effective: effectiveRating(player, slot.pos), rating: player.rating, peakRating: player.peakRating };
+        return { id: player.id, name: player.name, slot: slot.pos, effective: effectiveRating(player, slot.pos), rating: player.rating };
       }),
       bonuses: [
         { label: "Club chemistry", value: rating.clubChem },

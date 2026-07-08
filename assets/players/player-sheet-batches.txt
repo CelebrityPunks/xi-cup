@@ -1,8 +1,48 @@
-assets/sheets/players-sheet-006-030.png: 006 Diego Maradona | 007 Neymar | 008 Luis Suarez | 009 Xavi | 010 Andres Iniesta | 011 Sergio Busquets | 012 Dani Alves | 013 Carles Puyol | 014 Gerard Pique | 015 David Villa | 016 Iker Casillas | 017 Sergio Ramos | 018 Luka Modric | 019 Toni Kroos | 020 Karim Benzema | 021 Gareth Bale | 022 Marcelo | 023 Casemiro | 024 Roberto Carlos | 025 Cafu | 026 Ronaldinho | 027 Rivaldo | 028 Kaka | 029 Dida | 030 Paolo Maldini
-assets/sheets/players-sheet-031-055.png: 031 Alessandro Nesta | 032 Andrea Pirlo | 033 Clarence Seedorf | 034 Andriy Shevchenko | 035 Gianluigi Buffon | 036 Fabio Cannavaro | 037 Thierry Henry | 038 Dennis Bergkamp | 039 Patrick Vieira | 040 Robert Pires | 041 Sol Campbell | 042 Ashley Cole | 043 Peter Schmeichel | 044 Wayne Rooney | 045 Rio Ferdinand | 046 Nemanja Vidic | 047 Paul Scholes | 048 Ryan Giggs | 049 Edwin van der Sar | 050 Xabi Alonso | 051 Manuel Neuer | 052 Philipp Lahm | 053 Bastian Schweinsteiger | 054 Thomas Muller | 055 Miroslav Klose
-assets/sheets/players-sheet-056-080.png: 056 Mesut Ozil | 057 Kevin De Bruyne | 058 Erling Haaland | 059 Rodri | 060 Bernardo Silva | 061 Ruben Dias | 062 Ederson | 063 Johan Cruyff | 064 Ruud Gullit | 065 Marco van Basten | 066 Frank Rijkaard | 067 Virgil van Dijk | 068 Mohamed Salah | 069 Sadio Mane | 070 Roberto Firmino | 071 Alisson | 072 Steven Gerrard | 073 Frank Lampard | 074 Didier Drogba | 075 John Terry | 076 Petr Cech | 077 Kylian Mbappe | 078 Antoine Griezmann | 079 N'Golo Kante | 080 Raphael Varane
-assets/sheets/players-sheet-081-105.png: 081 Hugo Lloris | 082 Angel Di Maria | 083 Emiliano Martinez | 084 Enzo Fernandez | 085 Julian Alvarez | 086 Vinicius Junior | 087 Jude Bellingham | 088 Harry Kane | 089 Son Heung-min | 090 Yaya Toure | 091 Lev Yashin | 092 Franz Beckenbauer | 093 Gerd Muller | 094 Lothar Matthaus | 095 Oliver Kahn | 096 Roberto Baggio | 097 Francesco Totti | 098 Alessandro Del Piero | 099 Javier Zanetti | 100 Wesley Sneijder | 101 Samuel Eto'o | 102 Diego Milito | 103 Lucio | 104 Maicon | 105 Julio Cesar
-assets/sheets/players-sheet-106-130.png: 106 Arjen Robben | 107 Franck Ribery | 108 Robert Lewandowski | 109 David Alaba | 110 Jerome Boateng | 111 Mats Hummels | 112 Mario Gotze | 113 Marco Reus | 114 Sergio Aguero | 115 David Silva | 116 Vincent Kompany | 117 Joe Hart | 118 Eden Hazard | 119 Cesc Fabregas | 120 Michael Ballack | 121 Claude Makelele | 122 Marcel Desailly | 123 Lilian Thuram | 124 Laurent Blanc | 125 Youri Djorkaeff | 126 David Beckham | 127 Roy Keane | 128 Jaap Stam | 129 Dwight Yorke | 130 Andy Cole
-assets/sheets/players-sheet-131-155.png: 131 Michael Owen | 132 Fernando Torres | 133 David De Gea | 134 Trent Alexander-Arnold | 135 Andrew Robertson | 136 Fabinho | 137 Jordan Henderson | 138 Romario | 139 Bebeto | 140 Dunga | 141 Claudio Taffarel | 142 Hristo Stoichkov | 143 Michael Laudrup | 144 Ronald Koeman | 145 Luis Figo | 146 Deco | 147 Rui Costa | 148 Pepe | 149 Joao Moutinho | 150 Eusebio | 151 Ferenc Puskas | 152 Alfredo Di Stefano | 153 Garrincha | 154 Bobby Charlton | 155 Bobby Moore
-assets/sheets/players-sheet-156-180.png: 156 Gordon Banks | 157 Gary Lineker | 158 Paul Gascoigne | 159 Ousmane Dembele | 160 Lamine Yamal | 161 Vitinha | 162 Raphinha | 163 Achraf Hakimi | 164 Nuno Mendes | 165 Desire Doue | 166 Viktor Gyokeres | 167 Khvicha Kvaratskhelia | 168 Gianluigi Donnarumma | 169 Pedri | 170 Cole Palmer | 171 Lautaro Martinez | 172 Alexis Mac Allister | 173 Florian Wirtz | 174 Jamal Musiala | 175 Bukayo Saka | 176 Martin Odegaard | 177 Declan Rice | 178 William Saliba | 179 Gabriel Magalhaes | 180 Federico Valverde
-assets/sheets/players-sheet-181-200.png: 181 Aurelien Tchouameni | 182 Eduardo Camavinga | 183 Rodrygo | 184 Dani Carvajal | 185 Thibaut Courtois | 186 Jan Oblak | 187 Mike Maignan | 188 Nicolo Barella | 189 Alessandro Bastoni | 190 Federico Dimarco | 191 Hakan Calhanoglu | 192 Victor Osimhen | 193 Ademola Lookman | 194 Alexander Isak | 195 Bruno Fernandes | 196 Rafael Leao | 197 Joao Neves | 198 Warren Zaire-Emery | 199 Endrick | 200 Estevao
+assets/sheets/players-sheet-001.png: 001 Lionel Messi | 002 Cristiano Ronaldo | 003 Ronaldo Nazario | 004 Zinedine Zidane | 005 Pele
+assets/sheets/players-likeness-002.png: 006 Diego Maradona | 007 Neymar | 008 Luis Suarez | 009 Xavi | 010 Andres Iniesta
+assets/sheets/players-likeness-003.png: 011 Sergio Busquets | 012 Dani Alves | 013 Carles Puyol | 014 Gerard Pique | 015 David Villa
+assets/sheets/players-likeness-004.png: 016 Iker Casillas | 017 Sergio Ramos | 018 Luka Modric | 019 Toni Kroos | 020 Karim Benzema
+assets/sheets/players-likeness-005.png: 021 Gareth Bale | 022 Marcelo | 023 Casemiro | 024 Roberto Carlos | 025 Cafu
+assets/sheets/players-likeness-006.png: 026 Ronaldinho | 027 Rivaldo | 028 Kaka | 029 Dida | 030 Paolo Maldini
+assets/sheets/players-likeness-007.png: 031 Alessandro Nesta | 032 Andrea Pirlo | 033 Clarence Seedorf | 034 Andriy Shevchenko | 035 Gianluigi Buffon
+assets/sheets/players-likeness-008.png: 036 Fabio Cannavaro | 037 Thierry Henry | 038 Dennis Bergkamp | 039 Patrick Vieira | 040 Robert Pires
+assets/sheets/players-likeness-009.png: 041 Sol Campbell | 042 Ashley Cole | 043 Peter Schmeichel | 044 Wayne Rooney | 045 Rio Ferdinand
+assets/sheets/players-likeness-010.png: 046 Nemanja Vidic | 047 Paul Scholes | 048 Ryan Giggs | 049 Edwin van der Sar | 050 Xabi Alonso
+assets/sheets/players-likeness-011.png: 051 Manuel Neuer | 052 Philipp Lahm | 053 Bastian Schweinsteiger | 054 Thomas Muller | 055 Miroslav Klose
+assets/sheets/players-likeness-012.png: 056 Mesut Ozil | 057 Kevin De Bruyne | 058 Erling Haaland | 059 Rodri | 060 Bernardo Silva
+assets/sheets/players-likeness-013.png: 061 Ruben Dias | 062 Ederson | 063 Johan Cruyff | 064 Ruud Gullit | 065 Marco van Basten
+assets/sheets/players-likeness-014.png: 066 Frank Rijkaard | 067 Virgil van Dijk | 068 Mohamed Salah | 069 Sadio Mane | 070 Roberto Firmino
+assets/sheets/players-likeness-015.png: 071 Alisson | 072 Steven Gerrard | 073 Frank Lampard | 074 Didier Drogba | 075 John Terry
+assets/sheets/players-likeness-016.png: 076 Petr Cech | 077 Kylian Mbappe | 078 Antoine Griezmann | 079 N'Golo Kante | 080 Raphael Varane
+assets/sheets/players-likeness-017.png: 081 Hugo Lloris | 082 Angel Di Maria | 083 Emiliano Martinez | 084 Enzo Fernandez | 085 Julian Alvarez
+assets/sheets/players-likeness-018.png: 086 Vinicius Junior | 087 Jude Bellingham | 088 Harry Kane | 089 Son Heung-min | 090 Yaya Toure
+assets/sheets/players-likeness-019.png: 091 Lev Yashin | 092 Franz Beckenbauer | 093 Gerd Muller | 094 Lothar Matthaus | 095 Oliver Kahn
+assets/sheets/players-likeness-020.png: 096 Roberto Baggio | 097 Francesco Totti | 098 Alessandro Del Piero | 099 Javier Zanetti | 100 Wesley Sneijder
+assets/sheets/players-likeness-021.png: 101 Samuel Eto'o | 102 Diego Milito | 103 Lucio | 104 Maicon | 105 Julio Cesar
+assets/sheets/players-likeness-022.png: 106 Arjen Robben | 107 Franck Ribery | 108 Robert Lewandowski | 109 David Alaba | 110 Jerome Boateng
+assets/sheets/players-likeness-023.png: 111 Mats Hummels | 112 Mario Gotze | 113 Marco Reus | 114 Sergio Aguero | 115 David Silva
+assets/sheets/players-likeness-024.png: 116 Vincent Kompany | 117 Joe Hart | 118 Eden Hazard | 119 Cesc Fabregas | 120 Michael Ballack
+assets/sheets/players-likeness-025.png: 121 Claude Makelele | 122 Marcel Desailly | 123 Lilian Thuram | 124 Laurent Blanc | 125 Youri Djorkaeff
+assets/sheets/players-likeness-026.png: 126 David Beckham | 127 Roy Keane | 128 Jaap Stam | 129 Dwight Yorke | 130 Andy Cole
+assets/sheets/players-likeness-027.png: 131 Michael Owen | 132 Fernando Torres | 133 David De Gea | 134 Trent Alexander-Arnold | 135 Andrew Robertson
+assets/sheets/players-likeness-028.png: 136 Fabinho | 137 Jordan Henderson | 138 Romario | 139 Bebeto | 140 Dunga
+assets/sheets/players-likeness-029.png: 141 Claudio Taffarel | 142 Hristo Stoichkov | 143 Michael Laudrup | 144 Ronald Koeman | 145 Luis Figo
+assets/sheets/players-likeness-030.png: 146 Deco | 147 Rui Costa | 148 Pepe | 149 Joao Moutinho | 150 Eusebio
+assets/sheets/players-likeness-031.png: 151 Ferenc Puskas | 152 Alfredo Di Stefano | 153 Garrincha | 154 Bobby Charlton | 155 Bobby Moore
+assets/sheets/players-likeness-032.png: 156 Gordon Banks | 157 Gary Lineker | 158 Paul Gascoigne | 159 Ousmane Dembele | 160 Lamine Yamal
+assets/sheets/players-likeness-033.png: 161 Vitinha | 162 Raphinha | 163 Achraf Hakimi | 164 Nuno Mendes | 165 Desire Doue
+assets/sheets/players-likeness-034.png: 166 Viktor Gyokeres | 167 Khvicha Kvaratskhelia | 168 Gianluigi Donnarumma | 169 Pedri | 170 Cole Palmer
+assets/sheets/players-likeness-035.png: 171 Lautaro Martinez | 172 Alexis Mac Allister | 173 Florian Wirtz | 174 Jamal Musiala | 175 Bukayo Saka
+assets/sheets/players-likeness-036.png: 176 Martin Odegaard | 177 Declan Rice | 178 William Saliba | 179 Gabriel Magalhaes | 180 Federico Valverde
+assets/sheets/players-likeness-037.png: 181 Aurelien Tchouameni | 182 Eduardo Camavinga | 183 Rodrygo | 184 Dani Carvajal | 185 Thibaut Courtois
+assets/sheets/players-likeness-038.png: 186 Jan Oblak | 187 Mike Maignan | 188 Nicolo Barella | 189 Alessandro Bastoni | 190 Federico Dimarco
+assets/sheets/players-likeness-039.png: 191 Hakan Calhanoglu | 192 Victor Osimhen | 193 Ademola Lookman | 194 Alexander Isak | 195 Bruno Fernandes
+assets/sheets/players-likeness-040.png: 196 Rafael Leao | 197 Joao Neves | 198 Warren Zaire-Emery | 199 Endrick | 200 Estevao
+assets/sheets/players-likeness-041.png: 201 Patrice Evra | 202 Gianluca Zambrotta | 203 Joao Cancelo | 204 Kyle Walker | 205 Reece James
+assets/sheets/players-likeness-042.png: 206 Jeremie Frimpong | 207 Denzel Dumfries | 208 Kieran Trippier | 209 Theo Hernandez | 210 Alphonso Davies
+assets/sheets/players-likeness-043.png: 211 Jordi Alba | 212 Ferland Mendy | 213 Antonio Rudiger | 214 Thiago Silva | 215 Giorgio Chiellini
+assets/sheets/players-likeness-044.png: 216 Leonardo Bonucci | 217 Matthijs de Ligt | 218 David Luiz | 219 John Stones | 220 Marquinhos
+assets/sheets/players-likeness-045.png: 221 Ivan Perisic | 222 Leroy Sane | 223 Kingsley Coman | 224 Riyad Mahrez | 225 Federico Chiesa
+assets/sheets/players-likeness-046.png: 226 Raheem Sterling | 227 Luis Diaz | 228 Frenkie de Jong | 229 Ilkay Gundogan | 230 Jorginho
+assets/sheets/players-likeness-047.png: 231 Joshua Kimmich | 232 Leon Goretzka | 233 Paul Pogba | 234 Oleksandr Zinchenko | 235 Lucas Hernandez
+assets/sheets/players-likeness-048.png: 236 Benjamin Pavard | 237 Aaron Wan-Bissaka | 238 Luke Shaw | 239 Miguel Gutierrez | 240 Malo Gusto
